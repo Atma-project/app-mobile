@@ -1,0 +1,6 @@
+{
+    "home": {
+        "component": "Home",
+        "route": "/home"
+    }
+}
