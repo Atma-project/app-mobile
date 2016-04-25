@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "dat-gui": "^0.5.0",
+    "chirashi": "^3.0.6",
     "gsap": "^1.18.2",
     "lodash": "^4.6.1",
     "raf": "^3.2.0",
@@ -56,7 +57,9 @@
       "contentBase": "./dist",
       "publicPath": "/",
       "filename": "bundle.js",
-      "historyApiFallback": true
+      "historyApiFallback": true,
+      "host": "0.0.0.0",
+      "port": 8008
     },
     "cssFile": "bundle.css"
   },

@@ -1,3 +1,7 @@
 import App from 'app'
 
-// import router from 'router'
+import $ from 'chirashi-imports'
+
+import router from 'router'
+
+router.start(App, 'html')
