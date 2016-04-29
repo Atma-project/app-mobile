@@ -3,12 +3,15 @@ import io from 'socket.io-client'
 export default class Socket {
     constructor() {
 
-        // this.host = 'http://172.18.34.209:3000'
-        this.host = 'http://192.168.1.83:3000'
+        this.host = 'http://172.18.34.209:3000'
+        // this.host = 'http://192.168.1.83:3000'
+
+        this.listening = false
     }
 
     init(data) {
         this.socket = io(this.host)
+        this.listening = true
 
         this.socket.on('newConnection', (data) => {
             console.log('connected')
@@ -17,7 +20,8 @@ export default class Socket {
 
         this.socket.on('disconnect', (data) => {
             console.log('disconnected')
-            this.socket.emit('user-disconnected', data)
+            this.listening = false
+            this.socket.emit('disconnect', data)
         })
     }
 
@@ -51,6 +55,11 @@ export default class Socket {
                 'timeStamp': event.accelerationTs
             })
         })
+    }
+
+    disconnect() {
+        this.listening = false
+        this.socket.emit('disconnect')
     }
 
     pauseGame() {

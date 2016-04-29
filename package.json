@@ -33,14 +33,12 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
-    "dat-gui": "^0.5.0",
     "chirashi": "^3.0.6",
     "gsap": "^1.18.2",
-    "lodash": "^4.6.1",
-    "raf": "^3.2.0",
+    "lodash.foreach": "^4.2.0",
     "pixi.js": "^3.0.11",
+    "raf": "^3.2.0",
     "socket.io": "^1.4.5",
-    "three": "^0.75.0",
     "vue": "^1.0.20",
     "vue-resource": "^0.7.0",
     "vue-router": "^0.7.11"
