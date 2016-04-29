@@ -7,6 +7,7 @@ export default class Socket {
         // this.host = 'http://192.168.1.83:3000'
 
         this.listening = false
+        this.sending = false
     }
 
     init(data) {
@@ -15,7 +16,7 @@ export default class Socket {
 
         this.socket.on('newConnection', (data) => {
             console.log('connected')
-            this.socket.emit('user-connected', data)
+            this.socket.emit('mobile-connected', data)
         })
 
         this.socket.on('disconnect', (data) => {
