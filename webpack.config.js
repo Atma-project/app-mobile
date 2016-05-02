@@ -18,7 +18,7 @@ config.module = {
     loaders: [
         {
             test: /(\.jsx$)|(\.js$)/,
-            exclude: /(node_modules)/,
+            exclude: /node_modules\/(?!(chirashi|bricks\.js)).+/,
             loader: 'babel',
             query: {
                 presets: ['es2015', 'stage-0']
