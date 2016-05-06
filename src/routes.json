@@ -2,7 +2,28 @@
     "/": {
         "component": "Home"
     },
-    "/map": {
+    "/worlds/map": {
         "component": "Map"
+    },
+    "/worlds/list": {
+        "component": "List"
+    },
+    "/worlds/detail": {
+        "component": "Detail"
+    },
+    "/credits": {
+        "component": "Credits"
+    },
+    "/profile": {
+        "component": "Profile"
+    },
+    "/remote": {
+        "component": "Remote"
+    },
+    "/results": {
+        "component": "Results"
+    },
+    "/share": {
+        "component": "Share"
     }
 }
