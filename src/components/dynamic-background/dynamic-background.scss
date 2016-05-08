@@ -1,0 +1,25 @@
+@import '~styles/lib.scss';
+
+.dynamic-background {
+
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 0;
+
+    &.background-base {
+
+        background: -webkit-linear-gradient(
+            top,
+            $gradient-base-color-1  0%,
+            $gradient-base-color-2 19%,
+            $gradient-base-color-3 45%,
+            $gradient-base-color-4 80%,
+            $gradient-base-color-5 120%
+        );
+    }
+}

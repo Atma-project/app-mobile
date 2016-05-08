@@ -1,0 +1,48 @@
+body, html {
+    font-size: 16px;
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+}
+
+h1, .h1 {
+    color: $white;
+
+    font-size: $font-size-title;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    margin-bottom: 60px;
+
+    span {
+        font-size: $font-size-subTitle;
+        text-transform: capitalize;
+
+        margin-top: 25px;
+    }
+}
+
+p {
+    color: $white;
+
+    font-size: $font-size-text;
+
+    text-transform: capitalize;
+}
+
+a {
+    color: $white;
+
+    font-size: $font-size-button;
+
+    text-transform: uppercase;
+    text-align: center;
+
+    display: block;
+}
+
+.text-light {
+    color: $white;
+    
+    text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.51);
+}
