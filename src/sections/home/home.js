@@ -8,8 +8,8 @@ export default Vue.extend({
     template: require('./home.html'),
 
     ready() {
-        // SocketHandler.init()
-        // SocketHandler.sendDeviceMotion()
-        // SocketHandler.sendDeviceOrientation()
+        SocketHandler.init()
+        SocketHandler.sendDeviceMotion()
+        SocketHandler.sendDeviceOrientation()
     }
 })

@@ -8,14 +8,6 @@ export default class Socket {
 
         this.listening = false
         this.sending = false
-
-        this.currentXAccel = undefined
-        this.currentYAccel = undefined
-        this.currentZAccel = undefined
-
-        this.previousXAccel = undefined
-        this.previousYAccel = undefined
-        this.previousZAccel = undefined
     }
 
     init() {
@@ -48,31 +40,11 @@ export default class Socket {
     sendDeviceMotion() {
         window.addEventListener('devicemotion', (event) => {
 
-            if(this.currentXAccel) {
-                this.previousXAccel = this.currentXAccel
-            }
-
-            if(this.currentYAccel) {
-                this.previousYAccel = this.currentYAccel
-            }
-
-            if(this.currentZAccel) {
-                this.previousZAccel = this.currentZAccel
-            }
-
-            this.currentXAccel = event.acceleration.x
-            this.currentYAccel = event.acceleration.y
-            this.currentZAccel = event.acceleration.z
-
             this.socket.emit('acceleration', {
 
-                'aX': this.currentXAccel,
-                'aY': this.currentYAccel,
-                'aZ': this.currentZAccel,
-
-                'prevAX': this.previousXAccel,
-                'prevAY': this.previousYAccel,
-                'prevAZ': this.previousZAccel,
+                'aX': event.acceleration.x,
+                'aY': event.acceleration.y,
+                'aZ': event.acceleration.z,
 
                 'aGravityX': event.accelerationIncludingGravity.x,
                 'aGravityY': event.accelerationIncludingGravity.y,
