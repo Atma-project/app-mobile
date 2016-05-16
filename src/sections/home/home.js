@@ -7,9 +7,20 @@ import SocketHandler from 'helpers/sockets/socket-handler'
 export default Vue.extend({
     template: require('./home.html'),
 
+    data() {
+        return {
+            'reference': null,
+            'timer': null
+        }
+    },
+
     ready() {
         SocketHandler.init()
-        SocketHandler.sendDeviceMotion()
-        SocketHandler.sendDeviceOrientation()
+        SocketHandler.listenDeviceMotion()
+        SocketHandler.getReferencePosition()
+    },
+
+    methods: {
+
     }
 })
