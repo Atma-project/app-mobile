@@ -1,4 +1,5 @@
 import Vue from 'vue'
+// import Footer from './components/footer/footer'
 
 export default Vue.extend({
     ready() {
