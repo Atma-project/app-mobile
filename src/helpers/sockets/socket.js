@@ -11,6 +11,8 @@ export default class Socket {
         this.timer = null
         this.movementObject = {}
         this.rotationObject = {}
+        this.difMovementObject = {}
+        this.difRotationObject = {}
     }
 
     init() {
@@ -38,6 +40,16 @@ export default class Socket {
                 'aGravityZ': event.accelerationIncludingGravity.z,
             }
             this.socket.emit('motion', this.movementObject)
+
+            if(this.reference) {
+                this.difMovementObject = {
+                    daX: this.reference.ax - this.movementObject.aX,
+                    daY: this.reference.ay - this.movementObject.aY,
+                    daZ: this.reference.az - this.movementObject.aZ,
+                    dgaY: this.reference.agy - this.movementObject.aGravityY
+                }
+                this.socket.emit('motion-dif', this.difMovementObject)
+            }
         })
         window.addEventListener('deviceorientation', (event) => {
             console.log(event.alpha);
@@ -48,13 +60,22 @@ export default class Socket {
                 'timeStamp': event.orientationTs
             }
             this.socket.emit('rotation', this.rotationObject)
+
+            if(this.reference) {
+                this.difRotationObject = {
+                    da: this.reference.a - this.rotationObject.alpha,
+                    db: this.reference.b - this.rotationObject.beta,
+                    dg: this.reference.g - this.rotationObject.gamma,
+                }
+                this.socket.emit('rotation-dif', this.difRotationObject)
+            }
         })
     }
 
     getReferencePosition() {
         this.timer = window.setInterval(() => {
             if(!this.reference) {
-                if(this.movementObject.aGravityY < -9.0) {
+                if(this.movementObject.aGravityY < -9.0 && this.movementObject.aGravityZ < 1.5 && this.movementObject.aGravityX < 4.0) {
                     this.reference = {
                         ax: this.movementObject.aX,
                         ay: this.movementObject.aY,
