@@ -17,7 +17,6 @@ export default Vue.extend({
     ready() {
         SocketHandler.init()
         SocketHandler.listenDeviceMotion()
-        SocketHandler.getReferencePosition()
     },
 
     methods: {
