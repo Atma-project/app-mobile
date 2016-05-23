@@ -1,4 +1,32 @@
-$font-family-base     : "brandon-grotesque", sans-serif;
+$font-path: '/assets/fonts/';
+$font-families: 'brandon-regular', 'brandon-bold', 'brandon-black', 'brandon-medium', 'brandon-light', 'neutra-light' , 'neutra-regular';
+$font-filenames: 'brandon_reg-webfont', 'brandon_bld-webfont', 'brandon_blk-webfont', 'brandon_med-webfont', 'brandon_light-webfont', 'neutratext-lightalt-webfont', 'NeutraText-BookSC';
+$i: 1;
+
+@each $font-family in $font-families {
+  @font-face {
+    font-family: $font-family;
+    src: url($font-path + nth($font-filenames, $i) + '.eot');
+    src: url($font-path + nth($font-filenames, $i) + '.eot?#iefix') format('embedded-opentype'),
+         url($font-path + nth($font-filenames, $i) + '.woff2') format('woff2'),
+         url($font-path + nth($font-filenames, $i) + '.woff') format('woff'),
+         url($font-path + nth($font-filenames, $i) + '.ttf') format('truetype'),
+         url($font-path + nth($font-filenames, $i) + '.svg#' + $font-family) format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  $i: $i+1;
+}
+
+$brandon-regular : 'brandon-regular';
+$brandon-bold : 'brandon-bold';
+$brandon-black : 'brandon-black';
+$brandon-medium : 'brandon-medium';
+$brandon-light : 'brandon-light';
+$neutra-light : 'neutra-light';
+$neutra-regular : 'neutra-regular';
+
+$font-family-base     : $brandon-regular, sans-serif;
 
 $font-weight-regular  : 400;
 $font-weight-medium   : 500;
