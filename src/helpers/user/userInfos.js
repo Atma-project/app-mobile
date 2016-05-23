@@ -1,6 +1,6 @@
 module.exports = {
     "name": "Robin",
-    "slug": "Le meilleur des Drazic"
+    "slug": "Le meilleur des Drazic",
     "sexe": "H",
     "age": 23,
     "progress": {

@@ -1,0 +1,40 @@
+@import '~styles/lib.scss';
+
+.close {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    height: 37.5px;
+    width: 37.5px;
+    background-image: url(#{$path-images}/picto/close/close.svg);
+    background-size: 100%;
+}
+
+.credits {
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    width: 100%;
+    transform: translateY(-50%);
+    color: $white;
+
+    img {
+        height: 68px;
+        margin-bottom: 40px;
+    }
+
+    h2 {
+        font-size: 14px;
+        font-family: $neutra-light;
+        margin: 20px 0;
+    }
+
+    span {
+        font-family: $brandon;
+        text-transform: uppercase;
+        margin-left: 30px;
+        margin-bottom: 10px;
+        display: block;
+        line-height: 20px;
+    }
+}

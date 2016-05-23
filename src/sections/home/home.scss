@@ -1,49 +1,51 @@
 @import "~styles/lib.scss";
 
-.bloc-picto {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.home {
+    .bloc-picto {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-  width: 330px;
+        width: 330px;
 
-  img {
-    display: inline-block;
-    height: 100px;
-    padding: 0 28px;
-  }
-}
+        img {
+            display: inline-block;
+            height: 100px;
+            padding: 0 28px;
+        }
+    }
 
-.loader {
-  position: absolute;
-  bottom: 120px;
-  left: 50%;
-  transform: translateX(-50%);
-}
+    .loader {
+        position: absolute;
+        bottom: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 
-.synchro {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    .synchro {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
 
-  width: 100%;
+        h1 {
+            font-family: $neutra-light;
+            text-transform: none;
+            font-weight: 100;
+            font-size: 27px;
+        }
 
-  &.hide {
-    opacity: 0;
-  }
+        img {
+            position: relative;
+            display: block;
+            margin: 0 auto;
+            height: 70px;
+        }
+    }
 
-  h1 {
-    text-transform: none;
-    font-weight: 100;
-    font-size: 22px;
-  }
-
-  img {
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    height: 70px;
-  }
+    .hide {
+        opacity: 0;
+    }
 }

@@ -1,0 +1,36 @@
+@import "~styles/lib.scss";
+
+.share {
+    .middle {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-45%);
+        color: $white;
+        text-align: center;
+
+        h1 {
+            font-family: $neutra;
+            font-size: 20px;
+            margin-bottom: 0;
+        }
+
+        h2{
+            font-family: $neutra-light;
+            font-size: 13.5px;
+            margin-bottom: 60px;
+        }
+
+        ul {
+            li {
+                a {
+                    height: 68px;
+                    margin: 40px 0;
+                    img {
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }    
+}

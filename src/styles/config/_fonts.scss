@@ -18,15 +18,15 @@ $i: 1;
   $i: $i+1;
 }
 
-$brandon-regular : 'brandon-regular';
+$brandon : 'brandon-regular';
 $brandon-bold : 'brandon-bold';
 $brandon-black : 'brandon-black';
 $brandon-medium : 'brandon-medium';
 $brandon-light : 'brandon-light';
 $neutra-light : 'neutra-light';
-$neutra-regular : 'neutra-regular';
+$neutra : 'neutra-regular';
 
-$font-family-base     : $brandon-regular, sans-serif;
+$font-family-base     : $brandon, sans-serif;
 
 $font-weight-regular  : 400;
 $font-weight-medium   : 500;

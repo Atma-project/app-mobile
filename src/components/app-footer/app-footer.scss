@@ -1,5 +1,27 @@
 @import '~styles/lib.scss';
 
 footer {
-  font-family: $brandon-regular;
+    font-family: $brandon;
+    position: absolute;
+    bottom: 0;
+    height: 44px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+
+    ul {
+        li {
+            display: inline-block;
+
+            a {
+                font-size: 16px;
+                text-decoration: none;
+                line-height: 44px;
+                margin: 0 36px;
+
+                &.middle {
+                    margin: 0 20px;
+                }
+            }
+        }
+    }
 }
