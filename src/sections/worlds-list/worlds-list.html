@@ -1,6 +1,7 @@
 <div class="worlds-list">
     <div class="world" v-for="world in infos.progress.worlds">
-        {{ world.name }}
+        <img :src="world.image" alt="{{world.name}}">
+        <h1>{{ world.name }}</h1>
     </div>
 </div>
 

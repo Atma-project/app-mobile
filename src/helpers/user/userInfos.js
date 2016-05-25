@@ -1,6 +1,6 @@
 module.exports = {
-    "name": "Robin",
-    "slug": "Le meilleur des Drazic",
+    "name": "Nom",
+    "slug": "prenom",
     "sexe": "H",
     "age": 23,
     "progress": {
@@ -8,16 +8,18 @@ module.exports = {
         "nbWorldsLeft": 400,
         "worlds": {
             "water": {
-                "name": "Atlantis",
+                "name": "AM'MAYA",
                 "score": 90000,
                 "percentLight": 30,
-                "nb": 1
+                "nb": 1,
+                "image": "/assets/images/worlds/water.png"
             },
             "fire": {
-                "name": "Hell",
+                "name": "SUN'YA",
                 "score": 900000,
                 "percentLight": 50,
-                "nb": 2
+                "nb": 2,
+                "image": "/assets/images/worlds/fire.png"
             }
         }
     },
