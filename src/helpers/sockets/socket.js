@@ -8,15 +8,13 @@ const REFERENCE_MESURE_RANGE = 20
 export default class Socket {
     constructor() {
 
-        this.host = 'http://172.18.33.63:3000'
-        // this.host = 'http://192.168.1.84:3000'
+        // this.host = 'http://172.18.33.63:3000'
+        this.host = 'http://192.168.1.84:3000'
 
         this.motionReference    = {x: 0, y:0, z:0}
         this.rotationReference  = {alpah: 0, beta:0, gamma:0}
 
         this.prevMovementValue  = {x: 0, y:0, z:0}
-        this.deltaMovementValue = {x: 0, y:0, z:0}
-        this.movementValue      = {x: 0, y:0, z:0}
 
         this.prevRotationValue  = {alpha: 0, beta:0, gamma:0}
         this.deltaRotationValue = {alpha: 0, beta:0, gamma:0}
@@ -50,49 +48,33 @@ export default class Socket {
             this.movementRefPool.unshift(movementRefObject)
             this.movementRefPool.slice(MAX_POOL_SIZE, this.movementRefPool.length)
 
-            if (!this.motionReference.x && this.movementRefPool.length >= REFERENCE_MESURE_RANGE) {
-                let i = 0,
-                notSoFar = true
-                while(++i < REFERENCE_MESURE_RANGE && notSoFar) {
-                    let currentObj = this.movementRefPool[i]
-                    notSoFar = Math.abs(currentObj.x - movementRefObject.x) < THRESHOLD_ACCELERATION
-                        && Math.abs(currentObj.y - movementRefObject.y) < THRESHOLD_ACCELERATION
-                        && Math.abs(currentObj.z - movementRefObject.z) < THRESHOLD_ACCELERATION
+            if (!this.motionReference.x) {
+                if (this.movementRefPool.length >= REFERENCE_MESURE_RANGE) {
+
+                    let i = 0,
+                    notSoFar = true
+                    while(++i < REFERENCE_MESURE_RANGE && notSoFar) {
+                        let currentObj = this.movementRefPool[i]
+                        notSoFar = Math.abs(currentObj.x - movementRefObject.x) < THRESHOLD_ACCELERATION
+                            && Math.abs(currentObj.y - movementRefObject.y) < THRESHOLD_ACCELERATION
+                            && Math.abs(currentObj.z - movementRefObject.z) < THRESHOLD_ACCELERATION
+                    }
+
+                    if (notSoFar) {
+                        this.motionReference = movementRefObject
+                    }
+                }
+            } else {
+                let deltaMovementValue = {
+                    x: movementRefObject.x - this.movementRefPool[MAX_POOL_SIZE - 2].x,
+                    y: movementRefObject.y - this.movementRefPool[MAX_POOL_SIZE - 2].y,
+                    z: movementRefObject.z - this.movementRefPool[MAX_POOL_SIZE - 2].z
                 }
 
-                if (notSoFar) {
-                    this.motionReference = movementRefObject
-                    this.socket.emit('ref-motion', this.motionReference)
-                }
+                this.socket.emit('motion', movementRefObject)
+                this.socket.emit('ref-motion', this.motionReference)
+                this.socket.emit('delta-motion', deltaMovementValue)
             }
-
-            this.socket.emit('motion', movementRefObject)
-        })
-    }
-
-    handleMovementDelta() {
-        window.addEventListener('devicemotion', (event) => {
-
-            if(this.movementValue.x) {
-                this.prevMovementValue = this.movementValue
-                console.log('previous x : ', this.prevMovementValue.x)
-            }
-
-            this.movementValue = {
-                x: Math.abs(Math.trunc(event.accelerationIncludingGravity.x * 10000)),
-                y: Math.abs(Math.trunc(event.accelerationIncludingGravity.y * 10000)),
-                z: Math.abs(Math.trunc(event.accelerationIncludingGravity.z * 10000))
-            }
-            console.log('current  x : ', this.movementValue.x)
-
-            this.deltaMovementValue = {
-                x: this.movementValue.x - this.prevMovementValue.x,
-                y: this.movementValue.y - this.prevMovementValue.y,
-                z: this.movementValue.z - this.prevMovementValue.z
-            }
-            console.log('delta    x : ', this.deltaMovementValue.x)
-
-            this.socket.emit('delta-motion', this.deltaMovementValue)
         })
     }
 
