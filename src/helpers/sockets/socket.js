@@ -1,26 +1,21 @@
 import io from 'socket.io-client'
 
-const MAX_POOL_SIZE          = 2000
-const THRESHOLD_ACCELERATION = 1200
-const THRESHOLD_ROTATION     = 20
-const REFERENCE_MESURE_RANGE = 20
+const MAX_POOL_SIZE            = 2000
+const THRESHOLD_ACCELERATION   = 1200
+const THRESHOLD_ROTATION       = 20
+const THRESHOLD_ROTATION_STILL = 5
+const REFERENCE_MESURE_RANGE   = 20
 
 export default class Socket {
     constructor() {
 
-        // this.host = 'http://172.18.33.63:3000'
-        this.host = 'http://192.168.1.84:3000'
+        this.host = 'http://172.18.33.63:3000'
+        // this.host = 'http://192.168.1.84:3000'
 
         this.motionReference    = {x: 0, y:0, z:0}
-        this.rotationReference  = {alpah: 0, beta:0, gamma:0}
+        this.rotationReference  = {alpha: 0, beta:0, gamma:0}
 
-        this.prevMovementValue  = {x: 0, y:0, z:0}
-
-        this.prevRotationValue  = {alpha: 0, beta:0, gamma:0}
-        this.deltaRotationValue = {alpha: 0, beta:0, gamma:0}
-        this.rotationValue      = {alpha: 0, beta:0, gamma:0}
-
-        this.movementRefPool    = []
+        this.motionRefPool    = []
         this.rotationRefPool    = []
     }
 
@@ -37,48 +32,49 @@ export default class Socket {
         })
     }
 
-    handleMovementReference() {
+    handleMotion() {
         window.addEventListener('devicemotion', (event) => {
 
-            let movementRefObject = {
+            let motionRefObject = {
                 x: Math.abs(Math.trunc(event.accelerationIncludingGravity.x * 10000)) - this.motionReference.x,
                 y: Math.abs(Math.trunc(event.accelerationIncludingGravity.y * 10000)) - this.motionReference.y,
                 z: Math.abs(Math.trunc(event.accelerationIncludingGravity.z * 10000)) - this.motionReference.z
             }
-            this.movementRefPool.unshift(movementRefObject)
-            this.movementRefPool.slice(MAX_POOL_SIZE, this.movementRefPool.length)
+            this.motionRefPool.unshift(motionRefObject)
+            this.motionRefPool.slice(MAX_POOL_SIZE, this.motionRefPool.length)
 
             if (!this.motionReference.x) {
-                if (this.movementRefPool.length >= REFERENCE_MESURE_RANGE) {
+                if (this.motionRefPool.length >= REFERENCE_MESURE_RANGE) {
 
                     let i = 0,
                     notSoFar = true
                     while(++i < REFERENCE_MESURE_RANGE && notSoFar) {
-                        let currentObj = this.movementRefPool[i]
-                        notSoFar = Math.abs(currentObj.x - movementRefObject.x) < THRESHOLD_ACCELERATION
-                            && Math.abs(currentObj.y - movementRefObject.y) < THRESHOLD_ACCELERATION
-                            && Math.abs(currentObj.z - movementRefObject.z) < THRESHOLD_ACCELERATION
+                        let currentObj = this.motionRefPool[i]
+                        notSoFar = Math.abs(currentObj.x - motionRefObject.x) < THRESHOLD_ACCELERATION
+                            && Math.abs(currentObj.y - motionRefObject.y) < THRESHOLD_ACCELERATION
+                            && Math.abs(currentObj.z - motionRefObject.z) < THRESHOLD_ACCELERATION
                     }
 
                     if (notSoFar) {
-                        this.motionReference = movementRefObject
+                        this.motionReference = motionRefObject
                     }
                 }
             } else {
+                let currentMotionPoolLength = this.motionRefPool.length
                 let deltaMovementValue = {
-                    x: movementRefObject.x - this.movementRefPool[MAX_POOL_SIZE - 2].x,
-                    y: movementRefObject.y - this.movementRefPool[MAX_POOL_SIZE - 2].y,
-                    z: movementRefObject.z - this.movementRefPool[MAX_POOL_SIZE - 2].z
+                    x: motionRefObject.x - this.motionRefPool[currentMotionPoolLength - 2].x,
+                    y: motionRefObject.y - this.motionRefPool[currentMotionPoolLength - 2].y,
+                    z: motionRefObject.z - this.motionRefPool[currentMotionPoolLength - 2].z
                 }
 
-                this.socket.emit('motion', movementRefObject)
+                this.socket.emit('motion', motionRefObject)
                 this.socket.emit('ref-motion', this.motionReference)
                 this.socket.emit('delta-motion', deltaMovementValue)
             }
         })
     }
 
-    handleRotationReference() {
+    handleRotation() {
         window.addEventListener('deviceorientation', (event) => {
 
             let rotationRefObject = {
@@ -90,23 +86,35 @@ export default class Socket {
             this.rotationRefPool.unshift(rotationRefObject)
             this.rotationRefPool.slice(MAX_POOL_SIZE, this.rotationRefPool.length)
 
-            if (!this.rotationReference.x && this.rotationRefPool.length >= REFERENCE_MESURE_RANGE) {
-                let i = 0,
-                notSoFar = true
-                while(++i < REFERENCE_MESURE_RANGE && notSoFar) {
-                    let currentObj = this.rotationRefPool[i]
-                    notSoFar = (rotationRefObject.alpha > 200 - THRESHOLD_ROTATION && rotationObject.alpha < 200 + THRESHOLD_ROTATION)
-                        // && (rotationRefObject.beta > 90 - THRESHOLD_ROTATION && rotationObject.beta < 90 + THRESHOLD_ROTATION)
-                        // && (rotationRefObject.gamma > 50 - THRESHOLD_ROTATION && rotationObject.gamma < 50 + THRESHOLD_ROTATION)
+            if (!this.rotationReference.alpha) {
+                if (this.rotationRefPool.length >= REFERENCE_MESURE_RANGE) {
+
+                    let j = 0,
+                    notTooFar = true
+                    while(++j < REFERENCE_MESURE_RANGE && notTooFar) {
+                        let currentObj = this.rotationRefPool[j]
+                        notTooFar = (rotationRefObject.beta > 90 - THRESHOLD_ROTATION && rotationRefObject.beta < 90 + THRESHOLD_ROTATION)
+                            && (rotationRefObject.alpha > 200 - THRESHOLD_ROTATION && rotationRefObject.alpha < 200 + THRESHOLD_ROTATION)
+                            && (rotationRefObject.gamma > 50 - THRESHOLD_ROTATION && rotationRefObject.gamma < 50 + THRESHOLD_ROTATION)
+                            && (Math.abs(currentObj.beta - rotationRefObject.beta) < THRESHOLD_ROTATION_STILL)
+                    }
+
+                    if (notTooFar) {
+                        this.rotationReference = rotationRefObject
+                    }
+                }
+            } else {
+                let currentRotationPoolLength = this.rotationRefPool.length
+                let deltaRotationValue = {
+                    alpha: rotationRefObject.alpha - this.rotationRefPool[currentRotationPoolLength - 2].alpha,
+                    beta: rotationRefObject.beta - this.rotationRefPool[currentRotationPoolLength - 2].beta,
+                    gamma: rotationRefObject.gamma - this.rotationRefPool[currentRotationPoolLength - 2].gamma,
                 }
 
-                if (notSoFar) {
-                    this.rotationReference = rotationRefObject
-                    this.socket.emit('ref-rotation', this.rotationReference)
-                }
+                this.socket.emit('rotation', rotationRefObject)
+                this.socket.emit('ref-rotation', this.rotationReference)
+                this.socket.emit('delta-rotation', deltaRotationValue)
             }
-
-            this.socket.emit('rotation', rotationRefObject)
         })
     }
 }

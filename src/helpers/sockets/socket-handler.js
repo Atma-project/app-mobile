@@ -1,2 +1,6 @@
 import Socket from './socket'
-export default new Socket()
+let socket = null
+
+export default (function() {
+    return socket != null ? socket : socket = new Socket()
+})()
