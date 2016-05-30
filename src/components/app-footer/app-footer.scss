@@ -8,19 +8,21 @@ footer {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.1);
 
-    ul {
-        li {
+    .inner {
+        display: block;
+        text-align: center;
+
+        a {
             display: inline-block;
 
-            a {
-                font-size: 16px;
-                text-decoration: none;
-                line-height: 44px;
-                margin: 0 36px;
+            text-transform: uppercase;
+            text-align: center;
+            font-size: $font-size-base;
+            text-decoration: none;
+            line-height: 44px;
 
-                &.middle {
-                    margin: 0 20px;
-                }
+            &.middle {
+                margin: 0 40px;
             }
         }
     }

@@ -9,8 +9,8 @@ const REFERENCE_MESURE_RANGE   = 20
 export default class Socket {
     constructor() {
 
-        // this.host = 'http://172.18.33.63:3000'
-        this.host = 'http://192.168.1.84:3000'
+        this.host = 'http://172.18.33.102:3000'
+        // this.host = 'http://192.168.1.84:3000'
 
         this.motionReference    = {x: 0, y:0, z:0}
         this.rotationReference  = {alpha: 0, beta:0, gamma:0}
