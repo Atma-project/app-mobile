@@ -9,8 +9,8 @@ const REFERENCE_MESURE_RANGE   = 20
 export default class Socket {
     constructor() {
 
-        this.host = 'http://172.18.33.102:3000'
-        // this.host = 'http://192.168.1.84:3000'
+        // this.host = 'http://172.18.33.102:3000'
+        this.host = 'http://192.168.1.84:3000'
 
         this.motionReference    = {x: 0, y:0, z:0}
         this.rotationReference  = {alpha: 0, beta:0, gamma:0}
@@ -36,9 +36,9 @@ export default class Socket {
         window.addEventListener('devicemotion', (event) => {
 
             let motionRefObject = {
-                x: Math.abs(Math.trunc(event.accelerationIncludingGravity.x * 10000)) - this.motionReference.x,
-                y: Math.abs(Math.trunc(event.accelerationIncludingGravity.y * 10000)) - this.motionReference.y,
-                z: Math.abs(Math.trunc(event.accelerationIncludingGravity.z * 10000)) - this.motionReference.z
+                x: Math.abs(Math.trunc(event.acceleration.x * 10000)) - this.motionReference.x,
+                y: Math.abs(Math.trunc(event.acceleration.y * 10000)) - this.motionReference.y,
+                z: Math.abs(Math.trunc(event.acceleration.z * 10000)) - this.motionReference.z
             }
             this.motionRefPool.unshift(motionRefObject)
             this.motionRefPool.slice(MAX_POOL_SIZE, this.motionRefPool.length)
