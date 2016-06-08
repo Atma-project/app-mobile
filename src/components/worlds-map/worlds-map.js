@@ -3,6 +3,7 @@ import Vue from 'vue'
 import $ from 'chirashi-imports'
 // import WorldsScene from './worldsScene'
 import 'gsap'
+import 'helpers/gsap/ScrollToPlugin'
 
 Vue.component('WorldsMap', {
     template: require('./worlds-map.html'),
@@ -21,6 +22,11 @@ Vue.component('WorldsMap', {
 
     ready() {
         // this.worldsScene = new WorldsScene($.getSelector('.worlds-map canvas'), this.worlds)
+        TweenMax.set('.worlds-map', {
+            scrollTo: {
+                y: 200
+            }
+        })
 
         TweenMax.staggerFromTo('.world', 2, {
             opacity: 0,

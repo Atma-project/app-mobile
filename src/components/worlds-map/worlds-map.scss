@@ -1,18 +1,16 @@
 @import '~styles/lib.scss';
 
 .worlds-map {
-    width: 100vw;
-    height: 100vh;
+    width: 1000px;
+    height: 1000px;
 
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 180;
-
+    // position: relative;
+    // top: 0;
+    // left: 0;
+    // z-index: 180;
 
     overflow: scroll;
-
-    &::-webkit-scrollbar { width: 0 !important }
+    &::-webkit-scrollbar { width: 0 !important; }
 
     canvas {
         width: 100%;
