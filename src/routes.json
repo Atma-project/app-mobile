@@ -1,12 +1,12 @@
 {
     "/": {
-        "component": "Home"
+        "component": "SplashScreen"
     },
-    "/worlds/map": {
-        "component": "Map"
+    "/synchro": {
+        "component": "Synchro"
     },
-    "/worlds/list": {
-        "component": "List"
+    "/worlds": {
+        "component": "Worlds"
     },
     "/worlds/detail": {
         "component": "Detail"

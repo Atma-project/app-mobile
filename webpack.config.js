@@ -38,8 +38,7 @@ config.module = {
         },
         {
             test: /\.scss$/,
-            loader: 'style!css!postcss!sass'
-            // loader: (process.env.NODE_ENV == 'production' ? ExtractTextPlugin.extract('style', 'css!postcss!sass') : 'style!css!postcss!sass')
+            loader: (process.env.NODE_ENV == 'production' ? ExtractTextPlugin.extract('style', 'css!postcss!sass') : 'style!css!postcss!sass')
         },
         {
             test: /\.(html|svg)$/,

@@ -24,6 +24,22 @@ h1, .h1 {
     }
 }
 
+h2, .h2 {
+    color: $white;
+
+    font-size: $font-size-title;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    span {
+        font-size: $font-size-subTitle;
+        text-transform: capitalize;
+
+        margin-top: 25px;
+    }
+}
+
 p {
     color: $white;
     font-size: $font-size-text;
@@ -44,5 +60,5 @@ a {
 .text-light {
     color: $white;
 
-    text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.51);
+    text-shadow: 0px 0px 30px rgba(255, 255, 255, 1.0);
 }

@@ -9,8 +9,9 @@ const REFERENCE_MESURE_RANGE   = 20
 export default class Socket {
     constructor() {
 
-        // this.host = 'http://172.18.33.102:3000'
-        this.host = 'http://192.168.1.84:3000'
+        // this.host = 'http://172.18.33.102:3000' //ecole
+        // this.host = 'http://192.168.1.84:3000'  //appart
+        this.host = 'http://192.168.0.33:3000'  // maison
 
         this.motionReference    = {x: 0, y:0, z:0}
         this.rotationReference  = {alpha: 0, beta:0, gamma:0}
@@ -21,15 +22,6 @@ export default class Socket {
 
     init() {
         this.socket = io(this.host)
-
-        this.socket.on('newConnection', (data) => {
-            this.socket.emit('mobile-connected', data)
-        })
-
-        this.socket.on('disconnect', (data) => {
-            this.listening = false
-            this.socket.emit('disconnect', data)
-        })
     }
 
     handleMotion() {

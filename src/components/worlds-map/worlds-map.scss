@@ -1,0 +1,70 @@
+@import '~styles/lib.scss';
+
+.worlds-map {
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 180;
+
+
+    overflow: scroll;
+
+    &::-webkit-scrollbar { width: 0 !important }
+
+    canvas {
+        width: 100%;
+        height: 100%;
+
+        display: block;
+    }
+
+    .world {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        &:nth-child(1) {
+            z-index: 190;
+            width: 580px;
+            top: 290px;
+            left: -140px;
+        }
+
+        &:nth-child(2) {
+            z-index: 189;
+            width: 230px;
+            top: 240px;
+            left: 140px;
+        }
+
+        &:nth-child(3) {
+            z-index: 188;
+            width: 200px;
+            top: 140px;
+            left: -20px;
+        }
+
+        &:nth-child(4) {
+            z-index: 187;
+            width: 140px;
+            top: 29px;
+            left: 210px;
+        }
+
+        &:nth-child(5) {
+            z-index: 186;
+            width: 150px;
+            top: 439px;
+            left: 260px;
+        }
+    }
+}

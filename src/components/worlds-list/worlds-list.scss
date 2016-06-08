@@ -1,0 +1,30 @@
+@import '~styles/lib.scss';
+
+.worlds-list {
+    .inner {
+        padding: 50px 0;
+    }
+
+    .world {
+        margin-bottom: 40px;
+        opacity: 0;
+
+        img {
+            display: block;
+            width: 60%;
+            height: auto;
+
+            margin: 20px auto 0 auto;
+        }
+
+        &:nth-child(2) {
+            img {
+                width: 50%;
+            }
+        }
+    }
+
+    h2 {
+
+    }
+}

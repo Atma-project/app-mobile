@@ -1,0 +1,16 @@
+@import '~styles/lib.scss';
+
+.worlds {
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+    z-index: 250;
+    top: 0;
+    left: 0;
+
+    overflow: scroll;
+
+    &::-webkit-scrollbar { width: 0 !important }
+
+}

@@ -15,9 +15,9 @@ export default Vue.extend({
     },
 
     ready() {
-        SocketHandler.init()
-        SocketHandler.handleMotion()
-        SocketHandler.handleRotation()
+        // SocketHandler.init()
+        // SocketHandler.handleMotion()
+        // SocketHandler.handleRotation()
     },
 
     methods: {

@@ -2,8 +2,9 @@
 
 footer {
     font-family: $brandon;
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    z-index: 300;
     height: 44px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.1);
@@ -15,6 +16,7 @@ footer {
         a {
             display: inline-block;
 
+            font-family: $brandon;
             text-transform: uppercase;
             text-align: center;
             font-size: $font-size-base;

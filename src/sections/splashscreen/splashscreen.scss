@@ -1,0 +1,29 @@
+@import "~styles/lib.scss";
+
+.splashscreen {
+    .logo {
+        width: 300px;
+        height: 169px;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        background-image: url('#{$path-images}/sprites/logo/sprite-logo-new.png');
+
+        &.animate {
+            animation: logo-anim 2s steps(50);
+            animation-fill-mode: forwards;
+        }
+    }
+
+    @keyframes logo-anim {
+        0% {
+            background-position: 0px 0px
+        },
+        100% {
+            background-position: -15000px 0px
+        }
+    }
+}
