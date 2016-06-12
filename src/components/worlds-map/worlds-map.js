@@ -14,7 +14,7 @@ Vue.component('WorldsMap', {
         }
     },
 
-    props: ['worlds'],
+    props: ['worlds', 'mapDisplay', 'listDisplay', 'sliderDisplay'],
 
     created() {
 
@@ -24,7 +24,8 @@ Vue.component('WorldsMap', {
         // this.worldsScene = new WorldsScene($.getSelector('.worlds-map canvas'), this.worlds)
         TweenMax.set('.worlds-map', {
             scrollTo: {
-                y: 200
+                y: 200,
+                x: 375
             }
         })
 

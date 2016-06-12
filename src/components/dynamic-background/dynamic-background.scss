@@ -16,11 +16,23 @@
         width: 100%;
         height: 100%;
 
+        position: relative;
+        z-index: 100;
+
         background-color: transparent;
     }
 
-    &.background-base {
+    .background {
+        width: 100%;
+        height: 100%;
 
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .background-base, .background-locked {
+        z-index: 99;
         background: -webkit-linear-gradient(
             top,
             $gradient-base-color-1  0%,
@@ -28,6 +40,30 @@
             $gradient-base-color-3 45%,
             $gradient-base-color-4 80%,
             $gradient-base-color-5 120%
+        );
+    }
+
+    .background-unlocked {
+        z-index: 98;
+        background: -webkit-linear-gradient(
+            top,
+            #270a62  0%,
+            #062079 19%,
+            #274a93 45%,
+            #9297c9 73%,
+            #e8b0bc 110%
+        );
+    }
+
+    .background-lit {
+        z-index: 97;
+        background: -webkit-linear-gradient(
+            top,
+            #472099  0%,
+            #2a4dc1 19%,
+            #365dad 45%,
+            #92b5c9 73%,
+            #f6a066 110%
         );
     }
 }

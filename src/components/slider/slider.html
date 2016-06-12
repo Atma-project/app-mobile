@@ -1,0 +1,82 @@
+<div class="slider">
+
+    <ul class="slider-wrapper">
+        <li v-for="world in worlds" class="slide" :class="{'locked': world.locked, 'unlocked': !world.lit && !world.locked, 'lit active': world.lit}" id="{{world.type}}">
+            <div class="img-wrapper">
+                <img v-if="world.locked" :src="world.lockedTexture" alt="">
+                <img v-if="!world.locked" :src="world.texture" alt="">
+            </div>
+
+            <div class="content-wrapper">
+                <div class="content-up">
+                    <div class="inner lit" v-if="world.lit && !world.locked">
+                        <h2 class="text-light">{{world.name}}</h2>
+                        <div class="results">
+                            <span class="label">Intensité de lumière produite : </span>
+                            <span class="result">{{world.playerScore}} / {{world.maxScore}}</span>
+                        </div>
+                        <a href="" class="btn">Recommencer</a>
+                        <div class="my-trip">
+                            <span class="text-light">Revoir mon voyage</span>
+                            <svg id="arrow-down"x="0px" y="0px" viewBox="0 0 40.1 67.1">
+                                <polygon class="st0" points="5.4,67.1 1.1,62.9 31.4,32.6 0,4.5 4,0 40.1,32.4 "/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="inner unlocked" v-if="!world.lit && !world.locked">
+                        <h2>{{world.name}}</h2>
+                        <span>Monde à explorer</span>
+                        <a href="" class="btn">Explorer</a>
+                        <img src="./assets/images/picto/lock-open.png" alt="">
+                    </div>
+
+                    <div class="inner locked" v-if="world.locked">
+                        <h2>{{world.name}}</h2>
+                        <span>Monde à débloquer</span>
+                        <img src="./assets/images/picto/lock-open.png" alt="">
+                    </div>
+                </div>
+                <div class="content-scroll" v-if="world.lit">
+                    <div class="screenshot" @click="openPopin($event)">
+                        <img src="./assets/images/screens/screen-1.jpg" alt="">
+                        <span class="hashtags text-light">#ATMA #MaNouvelleSalleDeSport #100Lux</span>
+                    </div>
+                    <div class="screenshot" @click="openPopin($event)">
+                        <img src="./assets/images/screens/screen-2.jpg" alt="">
+                        <span class="hashtags text-light">#ATMA #MaNouvelleSalleDeSport #800Lux</span>
+                    </div>
+                    <div class="screenshot" @click="openPopin($event)">
+                        <img src="./assets/images/screens/screen-3.jpg" alt="">
+                        <span class="hashtags text-light">#ATMA #MaNouvelleSalleDeSport #200Lux</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="popin">
+        <div class="close-popin" @click="closePopin">
+            <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            	 viewBox="0 0 172.6 172.6">
+            	<style type="text/css">
+            		.st0{fill:none;stroke:#FFFFFF;stroke-width:2;}
+            	</style>
+                <path class="st0" d="M86.3,172.6c-23,0-44.7-9-61-25.3c-33.6-33.6-33.6-88.4,0-122C41.6,9,63.2,0,86.3,0c23,0,44.7,9,61,25.3
+                	c33.6,33.6,33.6,88.4,0,122C131,163.6,109.3,172.6,86.3,172.6z M86.3,2c-22.5,0-43.7,8.8-59.6,24.7c-32.9,32.9-32.9,86.3,0,119.2
+                	l0,0c15.9,15.9,37.1,24.7,59.6,24.7c22.5,0,43.7-8.8,59.6-24.7c32.9-32.9,32.9-86.3,0-119.2C130,10.8,108.8,2,86.3,2z"/>
+                <rect x="49.9" y="85.3" transform="matrix(0.7071 0.7071 -0.7071 0.7071 86.2773 -35.7371)" class="st0" width="72.7" height="2"/>
+                <rect x="85.3" y="49.9" transform="matrix(0.7071 0.7071 -0.7071 0.7071 86.2775 -35.7376)" class="st0" width="2" height="72.7"/>
+            </svg>
+        </div>
+        <div class="inner popin-1">
+            <img class="screen" src="./assets/images/screens/popin.png" alt="">
+        </div>
+        <!-- <div class="inner popin-2">
+            <img class="screen" src="./assets/images/screens/popin.png" alt="">
+        </div>
+        <div class="inner popin-3">
+            <img class="screen" src="./assets/images/screens/popin.png" alt="">
+        </div> -->
+    </div>
+</div>
