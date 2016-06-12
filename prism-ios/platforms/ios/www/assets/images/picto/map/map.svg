@@ -1,0 +1,18 @@
+<svg version="1.1" id="map-icon" x="0px" y="0px" width="150px" height="150px" viewBox="0 0 150 150">
+	<g>
+		<path fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M48.59,74.514l6.861-18.902L1.895,74.867l53.735,19.226L48.59,74.514z M148.105,74.867L94.58,55.437l6.83,18.723l-7.3,20.403
+			L148.105,74.867z M92.117,110.809l33.375,15.471l-15.926-33.138 M57.36,39.09L23.984,23.62L39.91,56.758 M39.622,92.299
+			l-15.32,32.917l32.873-15.364 M110.629,56.58l15.32-32.917L93.075,39.027 M75,148.105L48.59,74.648L75,1.895l26.409,72.398
+			L75,148.105z"/>
+		<path fill="none" stroke="#FFFFFF" stroke-width="2" d="M13.78,66.27c0,0,0.258-14.79,12.044-29.13"/>
+		<path fill="none" stroke="#FFFFFF" stroke-width="2" d="M37.388,25.507c0,0,10.819-10.089,29.321-11.572"/>
+		<path fill="none" stroke="#FFFFFF" stroke-width="2" d="M83.118,13.948c0,0,14.784,0.517,28.915,12.55"/>
+		<path fill="none" stroke="#FFFFFF" stroke-width="2" d="M122.415,37.839c0,0,10.276,10.641,12.082,29.114"/>
+		<path fill="none" stroke="#FFFFFF" stroke-width="2" d="M135.232,82.783c0,0-0.517,14.784-12.55,28.915"/>
+		<path fill="none" stroke="#FFFFFF" stroke-width="2" d="M111.059,123.711c0,0-10.641,10.276-29.114,12.082"/>
+		<path fill="none" stroke="#FFFFFF" stroke-width="2" d="M66.512,134.544c0,0-14.784-0.517-28.915-12.55"/>
+		<path fill="none" stroke="#FFFFFF" stroke-width="2" d="M26.114,112.044c0,0-10.089-10.819-11.572-29.321"/>
+		<circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="75" cy="73.897" r="10.673"/>
+	</g>
+</svg>
