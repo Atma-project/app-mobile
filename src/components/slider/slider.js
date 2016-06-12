@@ -154,6 +154,13 @@ Vue.component('Slider', {
                 opacity: 1,
                 drawSVG: "100%",
             }, 0.1)
+        },
+
+        goToRemote() {
+            TweenMax.staggerTo('.content-up .my-trip, .content-up .btn, .content-up .results,.content-up h2', 0.6, {
+                y: 200,
+                opacity: 0
+            }, 0.2)
         }
     }
 })
