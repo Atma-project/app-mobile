@@ -19,6 +19,7 @@ Vue.component('WorldsList', {
     },
 
     ready() {
+        $.getSelector('.worlds').addEventListener('scroll', ::this.scrolling)
         TweenMax.staggerFromTo('.world', 0.4, {
             opacity: 0,
             scale: 0,
@@ -33,6 +34,20 @@ Vue.component('WorldsList', {
     methods: {
         toggleSlider() {
             this.sliderDisplay = true
+        },
+
+        scrolling() {
+            if ($.getSelector('.worlds').scrollTop > 0) {
+                TweenMax.to('.app-header h1, .app-header a', 0.6, {
+                    opacity: 0,
+                    y: -50
+                })
+            } else {
+                TweenMax.to('.app-header h1, .app-header a', 0.4, {
+                    opacity: 1,
+                    y: 0
+                })
+            }
         }
     }
 })
