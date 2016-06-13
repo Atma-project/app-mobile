@@ -1,0 +1,85 @@
+@import "~styles/lib.scss";
+
+.results {
+    height: 100vh;
+    overflow: hidden;
+
+    .hide {
+        display: none;
+    }
+
+    .good, .bad {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .map {
+        position: absolute;
+        top: 26px;
+        left: 26px;
+        svg {
+            height: 40px;
+        }
+    }
+
+    .shape {
+        img {
+            height: 192px;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    .lux {
+        font-family: $brandon;
+        color: $white;
+        font-size: 20px;
+        text-align: center;
+        line-height: 26px;
+        margin: 20px 0 70px;
+
+        span {
+            display: block;
+            font-size: 22.5px;
+            margin-bottom: 28px;
+            &.score {
+                font-size: 40px;
+                font-family: $brandon-bold;
+                margin: 27px 0 12px 0;
+            }
+        }
+    }
+
+    .button {
+        display: block;
+        width: 260px;
+        height: 30px;
+        line-height: 31px;
+        vertical-align: middle;
+        text-decoration: none;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.3);
+        margin: 12.5px auto 0;
+    }
+
+    .to-slide {
+        transform: translateY(-20px);
+        opacity: 0;
+
+        @for $i from 1 through 10{
+            &.to-slide:nth-child(#{$i}){
+                animation: magic 0.6s ease forwards;
+                animation-delay: $i * 0.2s;
+
+                @keyframes magic {
+                    to {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
