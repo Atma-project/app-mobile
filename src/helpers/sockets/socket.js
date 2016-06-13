@@ -11,7 +11,7 @@ export default class Socket {
 
         // this.host = 'http://172.18.33.102:3000' //ecole
         // this.host = 'http://192.168.1.84:3000'  //appart
-        this.host = 'http://192.168.0.33:3000'  // maison
+        this.host = 'http://192.168.0.12:3000'  // maison
 
         this.motionReference    = {x: 0, y:0, z:0}
         this.rotationReference  = {alpha: 0, beta:0, gamma:0}
