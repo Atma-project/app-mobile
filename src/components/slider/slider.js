@@ -108,6 +108,7 @@ Vue.component('Slider', {
                 opacity: 0,
                 onComplete: () => {
                     $.style($.getSelector('.slider-wrapper'), {"display": "none"})
+                    this.killMobileSlider()
                 }
             })
             TweenMax.staggerFromTo('#map-icon path, #map-icon circle', 0.4, {
@@ -139,7 +140,8 @@ Vue.component('Slider', {
                     $.style($.getSelector('.popin'), {"display": "none"})
                 }
             })
-
+            this.$el.scrollTop = 0
+            this.createMobileSlider()
             $.style($.getSelector('.slider-wrapper'), {"display": "block"})
             TweenMax.to('.slider-wrapper', 0.4, {
                 opacity: 1
