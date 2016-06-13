@@ -39,6 +39,7 @@ Vue.component('Slider', {
             opacity: 1
         })
         this.createMobileSlider()
+        this.animateWorlds()
     },
 
     beforeDestroy() {
@@ -163,6 +164,45 @@ Vue.component('Slider', {
                 y: 200,
                 opacity: 0
             }, 0.2)
+        },
+
+        animateWorlds() {
+            TweenMax.from('.slide:nth-child(1) .img-wrapper img', 2, {
+                y: -10,
+                yoyo: true,
+                repeat: -1,
+                ease: Sine.easeInOut
+            })
+
+            TweenMax.from('.slide:nth-child(2) .img-wrapper img', 2.5, {
+                y: -5,
+                yoyo: true,
+                repeat: -1,
+                ease: Sine.easeInOut
+            })
+
+            TweenMax.from('.slide:nth-child(3) .img-wrapper img', 2.5, {
+                y: 10,
+                x: -5,
+                rotation: -5,
+                yoyo: true,
+                repeat: -1,
+                ease: Sine.easeInOut
+            })
+
+            TweenMax.from('.slide:nth-child(4) .img-wrapper img', 1.5, {
+                y: 5,
+                yoyo: true,
+                repeat: -1,
+                ease: Sine.easeInOut
+            })
+
+            TweenMax.from('.slide:nth-child(5) .img-wrapper img', 3, {
+                y: 5,
+                yoyo: true,
+                repeat: -1,
+                ease: Sine.easeInOut
+            })
         }
     }
 })

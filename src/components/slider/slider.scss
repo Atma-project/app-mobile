@@ -13,12 +13,16 @@
         &::-webkit-scrollbar { width: 0 !important }
     }
 
+    .text-off {
+        color: #0a0b28;
+    }
+
     .btn {
         display: block;
-        width: 300px;
-        height: 40px;
+        width: 260px;
+        height: 30px;
 
-        line-height: 40px;
+        line-height: 31px;
         vertical-align: middle;
 
         text-decoration: none;
@@ -41,7 +45,7 @@
     }
 
     h2 {
-        font-size: $font-size-world;
+        font-size: 2.013rem;
     }
 
     .arrow {
@@ -78,25 +82,38 @@
 
         .results {
             margin-top: 30px;
+
+            .units {
+                display: inline-block;
+                text-transform: none;
+            }
         }
 
         .label {
+            margin-bottom: 5px;
             color: $white;
-            font-size: $font-size-subTitle;
+            font-size: 1.1rem;
         }
         .result {
             color: $white;
             font-size: $font-size-title;
             text-transform: uppercase;
+            font-size: 1.4rem;
         }
 
         .btn {
             margin-top: 30px;
+            font-size: 1.1rem;
         }
 
         .my-trip {
             color: $white;
             margin-top: 30px;
+
+            span {
+                font-size: 1.1rem;
+                font-family: 'neutra-light';
+            }
         }
 
         #arrow-down {
@@ -112,6 +129,10 @@
                 fill: $white;
             }
         }
+
+        .hashtags {
+            margin-top: 10px;
+        }
     }
 
     .inner.unlocked {
@@ -121,15 +142,18 @@
             margin-top: 30px;
             color: $white;
             display: block;
+            font-size: 1.1rem;
         }
 
         .btn {
-            margin-top: 30px;
+            margin-top: 58px;
+            font-size: 1.1rem;
         }
 
         img {
             display: block;
-            margin: 27px auto 0;
+            margin: 30px auto 0;
+            width: 22px;
         }
     }
 
@@ -140,11 +164,13 @@
             margin-top: 30px;
             color: $white;
             display: block;
+            font-size: 1.1rem;
         }
 
         img {
             display: block;
-            margin: 97px auto 0;
+            margin: 120px auto 0;
+            width: 22px;
         }
     }
 

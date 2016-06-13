@@ -1,7 +1,7 @@
 module.exports = {
     "water": {
         "id": 0,
-        "name": "Atlantis",
+        "name": "Ut'oya",
         "type": "water",
         "mapIndex": 1,
         "playerScore": 90000,
@@ -22,7 +22,7 @@ module.exports = {
     },
     "desert": {
         "id": 1,
-        "name": "Hell",
+        "name": "Su'nya",
         "type": "desert",
         "mapIndex": 2,
         "playerScore": 0,
@@ -43,7 +43,7 @@ module.exports = {
     },
     "green": {
         "id": 2,
-        "name": "grass",
+        "name": "Ro'hina",
         "type": "green",
         "mapIndex": 3,
         "playerScore": 0,
@@ -64,7 +64,7 @@ module.exports = {
     },
     "ice": {
         "id": 3,
-        "name": "cold",
+        "name": "Sita",
         "type": "ice",
         "mapIndex": 4,
         "playerScore": 0,
@@ -85,7 +85,7 @@ module.exports = {
     },
     "fire": {
         "id": 4,
-        "name": "Hell",
+        "name": "Uma",
         "type": "fire",
         "mapIndex": 5,
         "playerScore": 0,
