@@ -14,7 +14,7 @@ Vue.component('AppHeader', {
         }
     },
 
-    props: ['mapDisplay'],
+    props: ['mapDisplay', 'sliderDisplay'],
 
     created() {
 
@@ -43,6 +43,8 @@ Vue.component('AppHeader', {
         changeDisplay() {
             if(this.mapDisplay) {
                 this.mapDisplay = !this.mapDisplay
+                this.sliderDisplay = false
+
                 TweenMax.staggerFromTo('#list-icon ellipse, #list-icon line', 0.4, {
                     drawSVG: "100%"
                 }, {
@@ -58,6 +60,8 @@ Vue.component('AppHeader', {
                 }, 0.1)
             } else {
                 this.mapDisplay = !this.mapDisplay
+                this.sliderDisplay = false
+
                 TweenMax.staggerFromTo('#map-icon path, #map-icon circle', 0.4, {
                     drawSVG: "100%"
                 }, {

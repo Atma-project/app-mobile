@@ -1,6 +1,7 @@
 //core
 import getSelector from 'chirashi/src/core/get-selector'
 import getSelectorAll from 'chirashi/src/core/get-selector-all'
+import forEach from 'chirashi/src/core/for-each'
 
 //dom
 import append from 'chirashi/src/dom/append'
@@ -20,11 +21,15 @@ import style from 'chirashi/src/styles/style'
 import size from 'chirashi/src/styles/size'
 import width from 'chirashi/src/styles/width'
 import height from 'chirashi/src/styles/height'
+import screenPosition from 'chirashi/src/styles/screen-position'
+
+import defaultify from 'chirashi/src/utils/defaultify'
 
 export default {
     //core
     getSelector,
     getSelectorAll,
+    forEach,
 
     //dom
     append,
@@ -43,5 +48,8 @@ export default {
     style,
     size,
     width,
-    height
+    height,
+    screenPosition,
+
+    defaultify
 }

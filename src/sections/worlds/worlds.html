@@ -1,9 +1,10 @@
 <div class="worlds">
   <div class="inner">
-    <app-header :map-display.sync="mapDisplay"></app-header>
+    <app-header :map-display.sync="mapDisplay" :slider-display.sync="sliderDisplay"></app-header>
 
-    <worlds-map v-if="mapDisplay" :worlds.sync="worlds"></worlds-map>
-    <worlds-list v-if="!mapDisplay" :worlds.sync="worlds"></worlds-list>
+    <worlds-map v-if="mapDisplay && !sliderDisplay" :worlds.sync="worlds"></worlds-map>
+    <worlds-list v-if="!mapDisplay && !sliderDisplay" :worlds.sync="worlds" :slider-display.sync="sliderDisplay"></worlds-list>
+    <slider v-if="sliderDisplay" :worlds.sync="worlds"></slider>
   </div>
 
   <app-footer></app-footer>

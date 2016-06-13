@@ -12,7 +12,7 @@ Vue.component('WorldsList', {
         }
     },
 
-    props: ['worlds'],
+    props: ['worlds','sliderDisplay'],
 
     created() {
 
@@ -31,6 +31,8 @@ Vue.component('WorldsList', {
     },
 
     methods: {
-
+        toggleSlider() {
+            this.sliderDisplay = true
+        }
     }
 })
