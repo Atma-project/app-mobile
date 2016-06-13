@@ -2,6 +2,7 @@ import './worlds-list.scss'
 import Vue from 'vue'
 import $ from 'chirashi-imports'
 import 'gsap'
+import 'helpers/gsap/SplitText'
 
 Vue.component('WorldsList', {
     template: require('./worlds-list.html'),
@@ -21,13 +22,21 @@ Vue.component('WorldsList', {
     ready() {
         this.worldsEl = $.getSelectorAll('.world')
         $.getSelector('.worlds').addEventListener('scroll', ::this.scrollHandler)
-        TweenMax.staggerFromTo('.world', 0.4, {
+        TweenMax.staggerFromTo('.world img', 0.4, {
             opacity: 0,
             scale: 0,
             y: 100
         }, {
             opacity: 1,
             scale: 1,
+            y: 0
+        }, 0.1)
+        let splitText = new SplitText('.world h2', {type:"chars"})
+        TweenMax.staggerFromTo(splitText.chars, 0.4, {
+            opacity: 0,
+            y: 20
+        }, {
+            opacity: 1,
             y: 0
         }, 0.1)
     },
