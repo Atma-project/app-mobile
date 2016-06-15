@@ -6,6 +6,7 @@
     }
 
     .world {
+        position: relative;
         margin-bottom: 50px;
 
         img {
@@ -13,7 +14,18 @@
             width: 60%;
             height: auto;
 
-            margin: 0 auto 20px auto;
+            margin: 0 auto;
+        }
+
+        h2 {
+            position: absolute;
+            top: 149px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            &.text-off {
+                color: #0a0b28;
+            }
         }
 
         &:nth-child(2) {
@@ -38,6 +50,51 @@
 
             opacity: 0;
             transform: scaleX(0);
+        }
+
+        &:first-child {
+            h2 {
+                position: absolute;
+                top: 149px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        &:nth-child(2) {
+            h2 {
+                position: absolute;
+                top: 149px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        &:nth-child(3) {
+            h2 {
+                position: absolute;
+                top: 179px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        &:nth-child(4) {
+            h2 {
+                position: absolute;
+                top: 189px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        &:nth-child(5) {
+            h2 {
+                position: absolute;
+                top: 179px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
     }
 }

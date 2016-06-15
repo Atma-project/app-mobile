@@ -21,8 +21,10 @@ Vue.component('WorldsList', {
     },
 
     ready() {
+
         this.worldsEl = $.getSelectorAll('.world')
         $.getSelector('.worlds').addEventListener('scroll', ::this.scrollHandler)
+
         TweenMax.staggerFromTo('.world img', 0.4, {
             opacity: 0,
             scale: 0,
@@ -32,13 +34,52 @@ Vue.component('WorldsList', {
             scale: 1,
             y: 0
         }, 0.1)
+
+        TweenMax.from('.world:nth-child(1) img', 2, {
+            y: 0.5,
+            yoyo: true,
+            repeat: -1,
+            ease: Sine.easeInOut
+        })
+
+        TweenMax.from('.world:nth-child(2) img', 2.5, {
+            y: -5,
+            yoyo: true,
+            repeat: -1,
+            ease: Sine.easeInOut
+        })
+
+        TweenMax.from('.world:nth-child(3) img', 2.5, {
+            y: 10,
+            x: -5,
+            rotation: -5,
+            yoyo: true,
+            repeat: -1,
+            ease: Sine.easeInOut
+        })
+
+        TweenMax.from('.world:nth-child(4) img', 1.5, {
+            y: 5,
+            yoyo: true,
+            repeat: -1,
+            ease: Sine.easeInOut
+        })
+
+        TweenMax.from('.world:nth-child(5) img', 3, {
+            y: 5,
+            yoyo: true,
+            repeat: -1,
+            ease: Sine.easeInOut
+        })
         let splitText = new SplitText('.world h2', {type:"chars"})
         TweenMax.staggerFromTo(splitText.chars, 0.4, {
             opacity: 0,
-            y: 20
+            y: 20,
+            scale: 0
         }, {
             opacity: 1,
-            y: 0
+            y: 0,
+            scale: 1
         }, 0.1)
     },
 
