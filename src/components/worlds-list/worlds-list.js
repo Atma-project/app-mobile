@@ -71,6 +71,7 @@ Vue.component('WorldsList', {
             repeat: -1,
             ease: Sine.easeInOut
         })
+        
         let splitText = new SplitText('.world h2', {type:"chars"})
         TweenMax.staggerFromTo(splitText.chars, 0.4, {
             opacity: 0,
