@@ -3,6 +3,7 @@ import './slider.scss'
 import Vue from 'vue'
 import $ from 'chirashi-imports'
 import WorldSlider from './world-slider.js'
+import SocketHandler from 'helpers/sockets/socket-handler'
 import 'gsap'
 
 Vue.component('Slider', {
@@ -14,7 +15,7 @@ Vue.component('Slider', {
         }
     },
 
-    props: ['worlds'],
+    props: ['worlds', 'currentWorld'],
 
     created() {
 
@@ -89,6 +90,18 @@ Vue.component('Slider', {
                             })
                             TweenMax.to('.background-lit', 0.8, {
                                 opacity: 1
+                            })
+                        }
+
+                        if (SocketHandler.listening) {
+                            this.currentWorld.id = '#' + slides[target].id
+                            SocketHandler.socket.emit('changed-current-world', this.currentWorld)
+                        } else {
+                            SocketHandler.init()
+
+                            SocketHandler.socket.on('connected', () => {
+                                this.currentWorld.id = '#' + slides[target].id
+                                SocketHandler.socket.emit('changed-current-world', this.currentWorld)
                             })
                         }
                     })

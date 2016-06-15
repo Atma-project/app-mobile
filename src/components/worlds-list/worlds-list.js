@@ -3,6 +3,7 @@ import Vue from 'vue'
 import $ from 'chirashi-imports'
 import 'gsap'
 import 'helpers/gsap/SplitText'
+import SocketHandler from 'helpers/sockets/socket-handler'
 
 Vue.component('WorldsList', {
     template: require('./worlds-list.html'),
@@ -13,7 +14,7 @@ Vue.component('WorldsList', {
         }
     },
 
-    props: ['worlds','sliderDisplay'],
+    props: ['worlds','sliderDisplay', 'currentWorld'],
 
     created() {
 
@@ -42,8 +43,20 @@ Vue.component('WorldsList', {
     },
 
     methods: {
-        toggleSlider() {
+        toggleSlider(event) {
             this.sliderDisplay = true
+
+            if (SocketHandler.listening) {
+                this.currentWorld.id = '#' + $.parent(event.target).id
+                SocketHandler.socket.emit('changed-current-world', this.currentWorld)
+            } else {
+                SocketHandler.init()
+
+                SocketHandler.socket.on('connected', () => {
+                    this.currentWorld.id = '#' + $.parent(event.target).id
+                    SocketHandler.socket.emit('changed-current-world', this.currentWorld)
+                })
+            }
         },
 
         scrollHandler() {

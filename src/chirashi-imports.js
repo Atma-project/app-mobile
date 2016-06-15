@@ -9,6 +9,7 @@ import attr from 'chirashi/src/dom/attr'
 import closest from 'chirashi/src/dom/closest'
 import find from 'chirashi/src/dom/find'
 import findOne from 'chirashi/src/dom/find-one'
+import parent from 'chirashi/src/dom/parent'
 
 //events
 import load from 'chirashi/src/events/load'
@@ -37,6 +38,7 @@ export default {
     closest,
     find,
     findOne,
+    parent,
 
     //events
     load,

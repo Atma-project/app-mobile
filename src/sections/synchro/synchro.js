@@ -30,6 +30,7 @@ export default Vue.extend({
             window.setTimeout(() => {
                 SocketHandler.init()
                 SocketHandler.socket.on('connected', () => {
+                    SocketHandler.socket.emit('phone-connected')
                     console.log('connected')
                     this.displayWelcome()
                 })
