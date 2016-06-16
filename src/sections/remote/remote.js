@@ -5,6 +5,7 @@ import $ from 'chirashi-imports'
 import 'gsap'
 import 'helpers/gsap/MorphSVGPlugin'
 import SocketHandler from 'helpers/sockets/socket-handler'
+let tween
 
 
 export default Vue.extend({
@@ -26,6 +27,11 @@ export default Vue.extend({
                 SocketHandler.socket.emit('start-calibrate')
                 SocketHandler.handleRotation()
                 SocketHandler.handleMotion()
+
+                SocketHandler.socket.on('end-app', () => {
+                  this.$route.router.go('/results')
+                })
+
             } else {
                 SocketHandler.init()
 
@@ -34,7 +40,15 @@ export default Vue.extend({
                     SocketHandler.handleRotation()
                     SocketHandler.handleMotion()
                 })
+
+                SocketHandler.socket.on('end-app', () => {
+                  this.$route.router.go('/results')
+                })
             }
+        },
+
+        goToWorlds() {
+          this.$route.router.go('/worlds')
         },
 
         show() {
@@ -45,8 +59,30 @@ export default Vue.extend({
             }})
 
             TweenMax.to('.loader', 0.6, {alpha: 1, delay: 1, ease: Power2.easeIn, onComplete: () => {
-                TweenLite.to(".loader", 0.6, {alpha: 0, delay: 4, ease: Power4.easeOut})
+                TweenLite.to(".loader", 0.6, {alpha: 0, delay: 4, ease: Power4.easeOut, onComplete: () => {
+
+                  setTimeout(function () {
+                    SocketHandler.socket.emit('start-app')
+                  }, 1000);
+
+                  setTimeout(function () {
+                    this.counter()
+                  }, 12000);
+                }})
             }})
+        },
+
+        counter() {
+          var counter = { var: 0 };
+          var tal = document.getElementById("counter");
+
+           tween = TweenMax.to(counter, 180, {
+                var: 90000,
+                onUpdate: function () {
+                    tal.innerHTML = Math.ceil(counter.var);
+                },
+                ease:Circ.easeOut
+            });
         },
 
         manageClick() {
@@ -56,6 +92,8 @@ export default Vue.extend({
                 document.querySelector('.shape').classList.toggle('hide')
                 document.querySelector('.restart').classList.toggle('show')
 
+                SocketHandler.socket.emit('start-calibrate')
+
                 if (!clicked) {
                     TweenMax.to('#two', 0.4, {x: 16, ease: Power2.easeIn, onComplete: () => {
                         TweenLite.to("#two", 0.4, {morphSVG:"#play", x: 10, ease: Power4.easeOut})
@@ -64,10 +102,12 @@ export default Vue.extend({
                         TweenLite.to("#one", 0.2, {alpha: 0, ease: Power4.easeOut})
                     }})
                     clicked = true
+                    tween.pause()
                 } else {
                     TweenLite.to("#two", 0.6, {morphSVG:"#two", x: 0, ease: Power4.easeOut})
                     TweenLite.to("#one", 0.6, {alpha: 1, x: 0, ease: Power4.easeOut})
                     clicked = false
+                    tween.play()
                 }
             })
 

@@ -46,6 +46,12 @@
                 font-size: 22.5px;
                 margin-top: 5px;
             }
+
+            #counter {
+              font-family: $brandon-medium;
+              font-size: 36px;
+              display: inline-block;
+            }
         }
         .button {
             .center {

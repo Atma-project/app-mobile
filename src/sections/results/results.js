@@ -14,5 +14,9 @@ export default Vue.extend({
     },
 
     methods: {
+      goToWorlds() {
+        this.$route.router.go('/worlds')
+        document.body.className = 'unlocked'
+      },
     }
 })
