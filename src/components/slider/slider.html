@@ -27,7 +27,7 @@
                     <div class="inner unlocked" v-if="!world.lit && !world.locked">
                         <h2>{{world.name}}</h2>
                         <span>Monde à explorer</span>
-                        <a href="" class="btn">Explorer</a>
+                        <a href="" class="btn" @click.prevent="goToRemote">Explorer</a>
                         <img src="./assets/images/picto/unlock_2.png" alt="">
                     </div>
 

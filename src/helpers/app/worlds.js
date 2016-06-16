@@ -1,16 +1,16 @@
 module.exports = {
-    "water": {
+    "desert": {
         "id": 0,
-        "name": "Ut'oya",
-        "type": "water",
-        "mapIndex": 1,
+        "name": "Su'nya",
+        "type": "desert",
+        "mapIndex": 2,
         "playerScore": 90000,
         "maxScore": 100000,
         "nbSteps": 7,
         "locked": false,
         "lit": true,
-        "texture": './assets/images/worlds/water.png',
-        "lockedTexture": './assets/images/worlds/water-locked.png',
+        "texture": './assets/images/worlds/desert.png',
+        "lockedTexture": './assets/images/worlds/desert-locked.png',
         "position": {
             "x": 100,
             "y": 200
@@ -20,18 +20,18 @@ module.exports = {
             "height": 270
         }
     },
-    "desert": {
+    "water": {
         "id": 1,
-        "name": "Su'nya",
-        "type": "desert",
-        "mapIndex": 2,
+        "name": "Ut'oya",
+        "type": "water",
+        "mapIndex": 1,
         "playerScore": 0,
-        "maxScore": 900000,
+        "maxScore": 100000,
         "nbSteps": 7,
         "locked": false,
         "lit": false,
-        "texture": './assets/images/worlds/desert.png',
-        "lockedTexture": './assets/images/worlds/desert-locked.png',
+        "texture": './assets/images/worlds/water.png',
+        "lockedTexture": './assets/images/worlds/water-locked.png',
         "position": {
             "x": 100,
             "y": 200
