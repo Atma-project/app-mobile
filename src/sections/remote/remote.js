@@ -4,6 +4,7 @@ import Vue from 'vue'
 import $ from 'chirashi-imports'
 import 'gsap'
 import 'helpers/gsap/MorphSVGPlugin'
+import SocketHandler from 'helpers/sockets/socket-handler'
 
 
 export default Vue.extend({
@@ -16,9 +17,26 @@ export default Vue.extend({
     ready() {
         this.show()
         this.manageClick()
+        this.handleSockets()
     },
 
     methods: {
+        handleSockets() {
+            if (SocketHandler.listening) {
+                SocketHandler.socket.emit('start-calibrate')
+                SocketHandler.handleRotation()
+                SocketHandler.handleMotion()
+            } else {
+                SocketHandler.init()
+
+                SocketHandler.socket.on('connected', () => {
+                    SocketHandler.socket.emit('start-calibrate')
+                    SocketHandler.handleRotation()
+                    SocketHandler.handleMotion()
+                })
+            }
+        },
+
         show() {
             TweenMax.to('.instructions', 0.6, {y: '-50%', alpha: 1, delay: 1, ease: Power2.easeIn, onComplete: () => {
                 TweenLite.to(".instructions", 0.6, {y: '-40%', alpha: 0, delay: 4, ease: Power4.easeOut, onComplete: () => {

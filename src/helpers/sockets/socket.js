@@ -9,8 +9,8 @@ const REFERENCE_MESURE_RANGE   = 20
 export default class Socket {
     constructor() {
 
-      this.host = 'http://172.18.33.23:3000'
-    //   this.host = 'http://192.168.1.84:3000'  //appart
+    //   this.host = 'http://172.18.33.23:3000'
+      this.host = 'http://192.168.1.84:3000'  //appart
 
         this.motionReference    = {x: 0, y:0, z:0}
         this.rotationReference  = {alpha: 0, beta:0, gamma:0}
@@ -28,42 +28,43 @@ export default class Socket {
 
     handleMotion() {
         window.addEventListener('devicemotion', (event) => {
+            if(this.rotationReference.alpha) {
+                let motionRefObject = {
+                    x: Math.abs(Math.trunc(event.acceleration.x * 10000)) - this.motionReference.x,
+                    y: Math.abs(Math.trunc(event.acceleration.y * 10000)) - this.motionReference.y,
+                    z: Math.abs(Math.trunc(event.acceleration.z * 10000)) - this.motionReference.z
+                }
+                this.motionRefPool.unshift(motionRefObject)
+                this.motionRefPool.slice(MAX_POOL_SIZE, this.motionRefPool.length)
 
-            let motionRefObject = {
-                x: Math.abs(Math.trunc(event.acceleration.x * 10000)) - this.motionReference.x,
-                y: Math.abs(Math.trunc(event.acceleration.y * 10000)) - this.motionReference.y,
-                z: Math.abs(Math.trunc(event.acceleration.z * 10000)) - this.motionReference.z
-            }
-            this.motionRefPool.unshift(motionRefObject)
-            this.motionRefPool.slice(MAX_POOL_SIZE, this.motionRefPool.length)
+                if (!this.motionReference.x) {
+                    if (this.motionRefPool.length >= REFERENCE_MESURE_RANGE) {
 
-            if (!this.motionReference.x) {
-                if (this.motionRefPool.length >= REFERENCE_MESURE_RANGE) {
+                        let i = 0,
+                        notSoFar = true
+                        while(++i < REFERENCE_MESURE_RANGE && notSoFar) {
+                            let currentObj = this.motionRefPool[i]
+                            notSoFar = Math.abs(currentObj.x - motionRefObject.x) < THRESHOLD_ACCELERATION
+                                && Math.abs(currentObj.y - motionRefObject.y) < THRESHOLD_ACCELERATION
+                                && Math.abs(currentObj.z - motionRefObject.z) < THRESHOLD_ACCELERATION
+                        }
 
-                    let i = 0,
-                    notSoFar = true
-                    while(++i < REFERENCE_MESURE_RANGE && notSoFar) {
-                        let currentObj = this.motionRefPool[i]
-                        notSoFar = Math.abs(currentObj.x - motionRefObject.x) < THRESHOLD_ACCELERATION
-                            && Math.abs(currentObj.y - motionRefObject.y) < THRESHOLD_ACCELERATION
-                            && Math.abs(currentObj.z - motionRefObject.z) < THRESHOLD_ACCELERATION
+                        if (notSoFar) {
+                            this.motionReference = motionRefObject
+                        }
+                    }
+                } else {
+                    let currentMotionPoolLength = this.motionRefPool.length
+                    let deltaMovementValue = {
+                        x: motionRefObject.x - this.motionRefPool[currentMotionPoolLength - 2].x,
+                        y: motionRefObject.y - this.motionRefPool[currentMotionPoolLength - 2].y,
+                        z: motionRefObject.z - this.motionRefPool[currentMotionPoolLength - 2].z
                     }
 
-                    if (notSoFar) {
-                        this.motionReference = motionRefObject
-                    }
+                    this.socket.emit('motion', motionRefObject)
+                    this.socket.emit('ref-motion', this.motionReference)
+                    this.socket.emit('delta-motion', deltaMovementValue)
                 }
-            } else {
-                let currentMotionPoolLength = this.motionRefPool.length
-                let deltaMovementValue = {
-                    x: motionRefObject.x - this.motionRefPool[currentMotionPoolLength - 2].x,
-                    y: motionRefObject.y - this.motionRefPool[currentMotionPoolLength - 2].y,
-                    z: motionRefObject.z - this.motionRefPool[currentMotionPoolLength - 2].z
-                }
-
-                this.socket.emit('motion', motionRefObject)
-                this.socket.emit('ref-motion', this.motionReference)
-                this.socket.emit('delta-motion', deltaMovementValue)
             }
         })
     }

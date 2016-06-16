@@ -173,10 +173,13 @@ Vue.component('Slider', {
         },
 
         goToRemote() {
-            TweenMax.staggerTo('.content-up .my-trip, .content-up .btn, .content-up .results,.content-up h2', 0.6, {
-                y: 200,
-                opacity: 0
-            }, 0.2)
+            
+            TweenMax.to('.slider', 0.4, {
+                opacity: 0,
+                onComplete: () => {
+                    this.$route.router.go('/remote')
+                }
+            })
         },
 
         animateWorlds() {

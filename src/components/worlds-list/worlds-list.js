@@ -27,16 +27,14 @@ Vue.component('WorldsList', {
 
         TweenMax.staggerFromTo('.world img', 0.4, {
             opacity: 0,
-            scale: 0,
-            y: 100
+            scale: 0
         }, {
             opacity: 1,
-            scale: 1,
-            y: 0
+            scale: 1
         }, 0.1)
 
         TweenMax.from('.world:nth-child(1) img', 2, {
-            y: 0.5,
+            y: 10,
             yoyo: true,
             repeat: -1,
             ease: Sine.easeInOut
@@ -71,7 +69,7 @@ Vue.component('WorldsList', {
             repeat: -1,
             ease: Sine.easeInOut
         })
-        
+
         let splitText = new SplitText('.world h2', {type:"chars"})
         TweenMax.staggerFromTo(splitText.chars, 0.4, {
             opacity: 0,
