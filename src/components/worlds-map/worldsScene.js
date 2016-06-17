@@ -1,6 +1,6 @@
 import PIXI from 'pixi.js'
 import $ from 'chirashi-imports'
-import Worlds from './worlds'
+// import Worlds from './worlds'
 import 'gsap'
 
 export class WorldsScene {
