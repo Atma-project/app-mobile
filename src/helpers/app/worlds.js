@@ -1,35 +1,14 @@
 module.exports = {
-    "water": {
+    "desert": {
         "id": 0,
-        "name": "Atlantis",
-        "type": "water",
-        "mapIndex": 1,
+        "name": "Su'nya",
+        "type": "desert",
+        "mapIndex": 2,
         "playerScore": 90000,
         "maxScore": 100000,
         "nbSteps": 7,
         "locked": false,
         "lit": true,
-        "texture": './assets/images/worlds/water.png',
-        "lockedTexture": './assets/images/worlds/water-locked.png',
-        "position": {
-            "x": 100,
-            "y": 200
-        },
-        "size": {
-            "width": 480,
-            "height": 270
-        }
-    },
-    "desert": {
-        "id": 1,
-        "name": "Hell",
-        "type": "desert",
-        "mapIndex": 2,
-        "playerScore": 0,
-        "maxScore": 900000,
-        "nbSteps": 7,
-        "locked": false,
-        "lit": false,
         "texture": './assets/images/worlds/desert.png',
         "lockedTexture": './assets/images/worlds/desert-locked.png',
         "position": {
@@ -41,9 +20,30 @@ module.exports = {
             "height": 270
         }
     },
+    "water": {
+        "id": 1,
+        "name": "Ut'oya",
+        "type": "water",
+        "mapIndex": 1,
+        "playerScore": 0,
+        "maxScore": 100000,
+        "nbSteps": 7,
+        "locked": false,
+        "lit": false,
+        "texture": './assets/images/worlds/water.png',
+        "lockedTexture": './assets/images/worlds/water-locked.png',
+        "position": {
+            "x": 100,
+            "y": 200
+        },
+        "size": {
+            "width": 480,
+            "height": 270
+        }
+    },
     "green": {
         "id": 2,
-        "name": "grass",
+        "name": "Ro'hina",
         "type": "green",
         "mapIndex": 3,
         "playerScore": 0,
@@ -64,7 +64,7 @@ module.exports = {
     },
     "ice": {
         "id": 3,
-        "name": "cold",
+        "name": "Sita",
         "type": "ice",
         "mapIndex": 4,
         "playerScore": 0,
@@ -85,7 +85,7 @@ module.exports = {
     },
     "fire": {
         "id": 4,
-        "name": "Hell",
+        "name": "Uma",
         "type": "fire",
         "mapIndex": 5,
         "playerScore": 0,

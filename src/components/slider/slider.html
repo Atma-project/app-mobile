@@ -13,7 +13,7 @@
                         <h2 class="text-light">{{world.name}}</h2>
                         <div class="results">
                             <span class="label">Intensité de lumière produite : </span>
-                            <span class="result">{{world.playerScore}} / {{world.maxScore}}</span>
+                            <span class="result">{{world.playerScore}} / {{world.maxScore}} <span class="units">lux</span></span>
                         </div>
                         <a href="#" class="btn" @click.prevent="goToRemote">Recommencer</a>
                         <div class="my-trip">
@@ -27,14 +27,14 @@
                     <div class="inner unlocked" v-if="!world.lit && !world.locked">
                         <h2>{{world.name}}</h2>
                         <span>Monde à explorer</span>
-                        <a href="" class="btn">Explorer</a>
-                        <img src="./assets/images/picto/lock-open.png" alt="">
+                        <a href="" class="btn" @click.prevent="goToRemote">Explorer</a>
+                        <img src="./assets/images/picto/unlock_2.png" alt="">
                     </div>
 
                     <div class="inner locked" v-if="world.locked">
-                        <h2>{{world.name}}</h2>
+                        <h2 class="text-off">{{world.name}}</h2>
                         <span>Monde à débloquer</span>
-                        <img src="./assets/images/picto/lock-open.png" alt="">
+                        <img src="./assets/images/picto/lock.png" alt="">
                     </div>
                 </div>
                 <div class="content-scroll" v-if="world.lit">

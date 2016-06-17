@@ -39,13 +39,13 @@
             Tu peux désormais accéder <br>
             à l’univers suivant !
         </div>
-        <a href="/worlds" class="button to-slide">
+        <a @click.prevent="goToWorlds" class="button to-slide">
             UNIVERS SUIVANT
         </a>
         <a href="#" class="button to-slide">
             REVOIR MON PARCOURS
         </a>
-        <a href="/remote" class="button to-slide">
+        <a @click.prevent="goToWorlds" class="button to-slide">
             RECOMMENCER
         </a>
     </div>

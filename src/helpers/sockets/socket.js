@@ -11,21 +11,26 @@ export default class Socket {
 
       // this.host = 'http://172.18.33.23:3000'
         this.host = 'http://172.18.33.38:3000'
+    //   this.host = 'http://172.18.33.23:3000'
+    //   this.host = 'http://172.18.33.95:3000'
+    //   this.host = 'http://192.168.1.84:3000'
 
         this.motionReference    = {x: 0, y:0, z:0}
         this.rotationReference  = {alpha: 0, beta:0, gamma:0}
 
         this.motionRefPool      = []
         this.rotationRefPool    = []
+
+        this.listening = false
     }
 
     init() {
         this.socket = io(this.host)
+        this.listening = true
     }
 
     handleMotion() {
         window.addEventListener('devicemotion', (event) => {
-
             let motionRefObject = {
                 x: Math.abs(Math.trunc(event.acceleration.x * 10000)) - this.motionReference.x,
                 y: Math.abs(Math.trunc(event.acceleration.y * 10000)) - this.motionReference.y,

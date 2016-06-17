@@ -14,6 +14,8 @@ export class Worlds extends PIXI.Container {
     }
 
     createWorlds() {
+      console.log('here');
+
         for (let worldName in this.worldsData) {
             let currentData = this.worldsData[worldName]
             let texture, world

@@ -10,7 +10,13 @@ export default Vue.extend({
         return {
             mapDisplay: true,
             sliderDisplay: false,
-            worlds : worldsData
+            worlds : worldsData,
+            currentWorld: {
+                id: null,
+                name: null,
+                locked: null,
+                lit: null
+            }
         }
     },
 
@@ -35,6 +41,9 @@ export default Vue.extend({
                     opacity: 1
                 })
             }
+        },
+        'currentWorld': (val, oldVal) => {
+            console.log('currentWorld new: %s, old: %s', val, oldVal)
         }
     },
 

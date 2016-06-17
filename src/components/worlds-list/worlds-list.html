@@ -1,9 +1,10 @@
 <div class="worlds-list">
     <div class="inner">
-        <div class="world" v-for="world in worlds" id="{{world.type}}" @click="toggleSlider">
+        <div class="world" v-for="world in worlds" id="{{world.type}}" @click="toggleSlider($event)">
             <img v-if="world.lit" :src="world.texture" alt="{{world.name}}">
             <img v-if="!world.lit" :src="world.lockedTexture" alt="{{world.name}}">
-            <h2 :class="{'text-light': world.lit}">{{ world.name }}</h2>
+            <!-- <h2 :class="{'text-light': world.lit}">{{ world.name }}</h2> -->
+            <h2 :class="{'text-light': world.lit, 'text-off': !world.lit}">{{ world.name }}</h2>
         </div>
     </div>
 </div>

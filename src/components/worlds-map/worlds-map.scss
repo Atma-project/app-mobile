@@ -37,39 +37,39 @@
             height: auto;
         }
 
-        &:nth-child(1) {
+        &:nth-child(2) {
             z-index: 190;
-            width: 580px;
-            top: 490px;
-            left: 235px;
+            width: 410px;
+            top: 400px;
+            left: 335px;
         }
 
-        &:nth-child(2) {
+        &:nth-child(1) {
             z-index: 189;
-            width: 230px;
-            top: 440px;
-            left: 615px;
+            width: 189px;
+            top: 350px;
+            left: 619px;
         }
 
         &:nth-child(3) {
             z-index: 188;
-            width: 200px;
-            top: 340px;
-            left: 255px;
+            width: 162px;
+            top: 310px;
+            left: 276px;
         }
 
         &:nth-child(4) {
             z-index: 187;
-            width: 140px;
-            top: 229px;
-            left: 585px;
+            width: 160px;
+            top: 439px;
+            left: 887px;
         }
 
         &:nth-child(5) {
             z-index: 186;
-            width: 150px;
-            top: 639px;
-            left: 735px;
+            width: 50px;
+            top: 280px;
+            left: 733px;
         }
     }
 }

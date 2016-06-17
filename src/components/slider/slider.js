@@ -3,6 +3,7 @@ import './slider.scss'
 import Vue from 'vue'
 import $ from 'chirashi-imports'
 import WorldSlider from './world-slider.js'
+import SocketHandler from 'helpers/sockets/socket-handler'
 import 'gsap'
 
 Vue.component('Slider', {
@@ -14,7 +15,7 @@ Vue.component('Slider', {
         }
     },
 
-    props: ['worlds'],
+    props: ['worlds', 'currentWorld'],
 
     created() {
 
@@ -39,6 +40,7 @@ Vue.component('Slider', {
             opacity: 1
         })
         this.createMobileSlider()
+        this.animateWorlds()
     },
 
     beforeDestroy() {
@@ -89,6 +91,18 @@ Vue.component('Slider', {
                             })
                             TweenMax.to('.background-lit', 0.8, {
                                 opacity: 1
+                            })
+                        }
+
+                        if (SocketHandler.listening) {
+                            this.currentWorld.id = '#' + slides[target].id
+                            SocketHandler.socket.emit('changed-current-world', this.currentWorld)
+                        } else {
+                            SocketHandler.init()
+
+                            SocketHandler.socket.on('connected', () => {
+                                this.currentWorld.id = '#' + slides[target].id
+                                SocketHandler.socket.emit('changed-current-world', this.currentWorld)
                             })
                         }
                     })
@@ -159,10 +173,52 @@ Vue.component('Slider', {
         },
 
         goToRemote() {
-            TweenMax.staggerTo('.content-up .my-trip, .content-up .btn, .content-up .results,.content-up h2', 0.6, {
-                y: 200,
-                opacity: 0
-            }, 0.2)
+            
+            TweenMax.to('.slider', 0.4, {
+                opacity: 0,
+                onComplete: () => {
+                    this.$route.router.go('/remote')
+                }
+            })
+        },
+
+        animateWorlds() {
+            TweenMax.from('.slide:nth-child(1) .img-wrapper img', 2, {
+                y: -10,
+                yoyo: true,
+                repeat: -1,
+                ease: Sine.easeInOut
+            })
+
+            TweenMax.from('.slide:nth-child(2) .img-wrapper img', 2.5, {
+                y: -5,
+                yoyo: true,
+                repeat: -1,
+                ease: Sine.easeInOut
+            })
+
+            TweenMax.from('.slide:nth-child(3) .img-wrapper img', 2.5, {
+                y: 10,
+                x: -5,
+                rotation: -5,
+                yoyo: true,
+                repeat: -1,
+                ease: Sine.easeInOut
+            })
+
+            TweenMax.from('.slide:nth-child(4) .img-wrapper img', 1.5, {
+                y: 5,
+                yoyo: true,
+                repeat: -1,
+                ease: Sine.easeInOut
+            })
+
+            TweenMax.from('.slide:nth-child(5) .img-wrapper img', 3, {
+                y: 5,
+                yoyo: true,
+                repeat: -1,
+                ease: Sine.easeInOut
+            })
         }
     }
 })

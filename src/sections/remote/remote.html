@@ -39,7 +39,7 @@
     </div>
     <div class="guide">
         <div class="text to-show">
-            0 lux
+            <span id="counter">0</span> lux
             <span>/ 100000 lux</span>
         </div>
         <div class="button to-show">
@@ -56,7 +56,7 @@
         <div class="shape to-show">
             <img src="./assets/images/remote/shape.png" alt="shape atma">
         </div>
-        <a href="/remote" class="restart">
+        <a @click.prevent="goToWorlds" class="restart">
             <span>recommencer</span>
         </a>
     </div>
