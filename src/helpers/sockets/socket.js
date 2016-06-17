@@ -10,7 +10,7 @@ export default class Socket {
     constructor() {
 
       // this.host = 'http://172.18.33.23:3000'
-        this.host = 'http://localhost:3000'
+        this.host = 'http://172.18.33.38:3000'
 
         this.motionReference    = {x: 0, y:0, z:0}
         this.rotationReference  = {alpha: 0, beta:0, gamma:0}
