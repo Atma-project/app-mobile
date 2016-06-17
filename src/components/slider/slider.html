@@ -1,15 +1,20 @@
 <div class="slider">
 
     <ul class="slider-wrapper">
-        <li v-for="world in worlds" class="slide" :class="{'locked': world.locked, 'unlocked': !world.lit && !world.locked, 'lit active': world.lit}" id="{{world.type}}">
+        <li v-for="world in worlds" class="slide" :class="{
+            'lit active': !world.locked && world.done && world.lit,
+            'unlocked': world.locked && !world.done && world.lit,
+            'locked': world.locked && !world.done && !world.lit, 
+        }" id="{{world.type}}">
             <div class="img-wrapper">
-                <img v-if="world.locked" :src="world.lockedTexture" alt="">
-                <img v-if="!world.locked" :src="world.texture" alt="">
+                <img v-if="!world.locked && world.done && world.lit" :src="world.texture" alt="">
+                <img v-if="world.locked && !world.done && world.lit" :src="world.texture" alt="">
+                <img v-if="world.locked && !world.done && !world.lit" :src="world.lockedTexture" alt="">
             </div>
 
             <div class="content-wrapper">
                 <div class="content-up">
-                    <div class="inner lit" v-if="world.lit && !world.locked">
+                    <div class="inner lit" v-if="!world.locked && world.done && world.lit">
                         <h2 class="text-light">{{world.name}}</h2>
                         <div class="results">
                             <span class="label">Intensité de lumière produite : </span>
@@ -24,20 +29,20 @@
                         </div>
                     </div>
 
-                    <div class="inner unlocked" v-if="!world.lit && !world.locked">
+                    <div class="inner unlocked" v-if="world.locked && !world.done && world.lit">
                         <h2>{{world.name}}</h2>
                         <span>Monde à explorer</span>
                         <a href="" class="btn" @click.prevent="goToRemote">Explorer</a>
                         <img src="./assets/images/picto/unlock_2.png" alt="">
                     </div>
 
-                    <div class="inner locked" v-if="world.locked">
+                    <div class="inner locked" v-if="world.locked && !world.done && !world.lit">
                         <h2 class="text-off">{{world.name}}</h2>
                         <span>Monde à débloquer</span>
                         <img src="./assets/images/picto/lock.png" alt="">
                     </div>
                 </div>
-                <div class="content-scroll" v-if="world.lit">
+                <div class="content-scroll" v-if="world.lit && world.done">
                     <div class="screenshot" @click="openPopin($event)">
                         <img src="./assets/images/screens/screen-1.jpg" alt="">
                         <span class="hashtags text-light">#ATMA #MaNouvelleSalleDeSport #100Lux</span>
