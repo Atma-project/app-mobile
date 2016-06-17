@@ -10,7 +10,7 @@ export default class Socket {
     constructor() {
 
         //   this.host = 'http://172.18.33.23:3000'
-        this.host = 'http://172.18.33.95:3000'
+        this.host = 'http://172.18.33.38:3000'
 
 
         //reference objects
