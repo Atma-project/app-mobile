@@ -4,7 +4,7 @@
         <li v-for="world in worlds" class="slide" :class="{
             'lit active': !world.locked && world.done && world.lit,
             'unlocked': world.locked && !world.done && world.lit,
-            'locked': world.locked && !world.done && !world.lit, 
+            'locked': world.locked && !world.done && !world.lit,
         }" id="{{world.type}}">
             <div class="img-wrapper">
                 <img v-if="!world.locked && world.done && world.lit" :src="world.texture" alt="">
@@ -21,7 +21,7 @@
                             <span class="result">{{world.playerScore}} / {{world.maxScore}} <span class="units">lux</span></span>
                         </div>
                         <a href="#" class="btn" @click.prevent="goToRemote">Recommencer</a>
-                        <div class="my-trip">
+                        <div class="my-trip" @click.prevent="goToScrollContent">
                             <span class="text-light">Revoir mon voyage</span>
                             <svg id="arrow-down"x="0px" y="0px" viewBox="0 0 40.1 67.1">
                                 <polygon class="st0" points="5.4,67.1 1.1,62.9 31.4,32.6 0,4.5 4,0 40.1,32.4 "/>
