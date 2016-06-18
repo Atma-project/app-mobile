@@ -95,17 +95,17 @@ export default Vue.extend({
                 SocketHandler.socket.emit('start-calibrate')
 
                 if (!clicked) {
+                    TweenLite.to("#play", 0.6, {morphSVG:"#two", x: 0, ease: Power4.easeOut})
+                    TweenLite.to("#one", 0.6, {alpha: 1, x: 0, ease: Power4.easeOut})
+                    clicked = true
+                    tween.pause()
+                } else {
                     TweenMax.to('#two', 0.4, {x: 16, ease: Power2.easeIn, onComplete: () => {
-                        TweenLite.to("#two", 0.4, {morphSVG:"#play", x: 10, ease: Power4.easeOut})
+                        TweenLite.to("#play", 0.4, {morphSVG:"#play", x: 10, ease: Power4.easeOut})
                     }})
                     TweenMax.to('#one', 0.4, {x: -16, ease: Power2.easeIn, onComplete: () => {
                         TweenLite.to("#one", 0.2, {alpha: 0, ease: Power4.easeOut})
                     }})
-                    clicked = true
-                    tween.pause()
-                } else {
-                    TweenLite.to("#two", 0.6, {morphSVG:"#two", x: 0, ease: Power4.easeOut})
-                    TweenLite.to("#one", 0.6, {alpha: 1, x: 0, ease: Power4.easeOut})
                     clicked = false
                     tween.play()
                 }

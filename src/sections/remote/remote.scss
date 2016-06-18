@@ -80,8 +80,12 @@
                 height: 42.5px;
                 fill: #fff;
 
+                #one, #two {
+                  opacity: 0;
+                }
+
                 #play {
-                    display: none;
+                  transform: translateX(6px);
                 }
 
                 .animate {
@@ -126,7 +130,7 @@
             }
         }
 
-        .restart {
+        .re {
             position: absolute;
             bottom: 56px;
             left: 50%;
