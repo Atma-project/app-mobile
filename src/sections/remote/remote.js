@@ -18,34 +18,21 @@ export default Vue.extend({
     ready() {
         this.show()
         this.manageClick()
-        this.handleSockets()
+
+        if (SocketHandler.listening) {
+            SocketHandler.socket.on('end-experience', () => {
+              this.$route.router.go('/results')
+            })
+
+        } else {
+            SocketHandler.init()
+            SocketHandler.socket.on('end-experience', () => {
+              this.$route.router.go('/results')
+            })
+        }
     },
 
     methods: {
-        handleSockets() {
-            if (SocketHandler.listening) {
-                SocketHandler.socket.emit('start-calibrate')
-                SocketHandler.handleRotation()
-                SocketHandler.handleMotion()
-
-                SocketHandler.socket.on('end-app', () => {
-                  this.$route.router.go('/results')
-                })
-
-            } else {
-                SocketHandler.init()
-
-                SocketHandler.socket.on('connected', () => {
-                    SocketHandler.socket.emit('start-calibrate')
-                    SocketHandler.handleRotation()
-                    SocketHandler.handleMotion()
-                })
-
-                SocketHandler.socket.on('end-app', () => {
-                  this.$route.router.go('/results')
-                })
-            }
-        },
 
         goToWorlds() {
           this.$route.router.go('/worlds')
@@ -86,13 +73,11 @@ export default Vue.extend({
         },
 
         manageClick() {
-            var clicked = false;
+            let clicked = false;
 
             document.querySelector('.button').addEventListener('click', () => {
                 document.querySelector('.shape').classList.toggle('hide')
                 document.querySelector('.restart').classList.toggle('show')
-
-                SocketHandler.socket.emit('start-calibrate')
 
                 if (!clicked) {
                     TweenMax.to('#two', 0.4, {x: 16, ease: Power2.easeIn, onComplete: () => {

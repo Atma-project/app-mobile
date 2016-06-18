@@ -80,8 +80,12 @@
                 height: 42.5px;
                 fill: #fff;
 
-                #play {
+                #one, #two {
                     display: none;
+                }
+
+                #play {
+                    display: block;
                 }
 
                 .animate {

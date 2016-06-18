@@ -30,9 +30,9 @@ export default Vue.extend({
             window.setTimeout(() => {
                 SocketHandler.init()
                 SocketHandler.socket.on('connected', () => {
-                    SocketHandler.socket.emit('phone-connected')
-                    console.log('connected')
-                    this.displayWelcome()
+                    document.querySelector('.synchro').addEventListener('click', () => {
+                        this.displayWelcome()
+                    })
                 })
             }, 3000)
         },
@@ -40,6 +40,7 @@ export default Vue.extend({
         displayWelcome() {
             let animationEvent = this.wichAnimationEvent()
             animationEvent && document.addEventListener(animationEvent, () => {
+                SocketHandler.socket.emit('phone-connected')
                 TweenMax.to(this.$el, 1.0, {
                     opacity: 0,
                     onComplete: () => {
