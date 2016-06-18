@@ -173,10 +173,11 @@ Vue.component('Slider', {
         },
 
         goToRemote() {
-            
+
             TweenMax.to('.slider', 0.4, {
                 opacity: 0,
                 onComplete: () => {
+                    SocketHandler.socket.emit('go-to-experience')
                     this.$route.router.go('/remote')
                 }
             })

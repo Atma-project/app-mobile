@@ -88,6 +88,10 @@
                   transform: translateX(6px);
                 }
 
+                // #play {
+                //     display: block;
+                // }
+
                 .animate {
                     transition: all 0.4s;
                     transform: translateX(16px);
@@ -130,7 +134,7 @@
             }
         }
 
-        .re {
+        .restart {
             position: absolute;
             bottom: 56px;
             left: 50%;
