@@ -39,7 +39,8 @@ export default Vue.extend({
 
         displayWelcome() {
             let animationEvent = this.wichAnimationEvent()
-            animationEvent && document.addEventListener(animationEvent, () => {
+            animationEvent && document.querySelector('.synchro .welcome .logo').addEventListener(animationEvent, () => {
+                console.log('phone connected in animation end');
                 SocketHandler.socket.emit('phone-connected')
                 TweenMax.to(this.$el, 1.0, {
                     opacity: 0,

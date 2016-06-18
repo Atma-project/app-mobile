@@ -38,10 +38,6 @@ export default Vue.extend({
 
     methods: {
 
-        goToWorlds() {
-          this.$route.router.go('/worlds')
-        },
-
         show() {
             TweenMax.to('.instructions', 0.6, {y: '-50%', alpha: 1, delay: 1, ease: Power2.easeIn, onComplete: () => {
                 TweenLite.to(".instructions", 0.6, {y: '-40%', alpha: 0, delay: 4, ease: Power4.easeOut, onComplete: () => {
