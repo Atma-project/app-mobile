@@ -12,7 +12,11 @@ export default Vue.extend({
     template: require('./remote.html'),
 
     data() {
-        return {}
+        return {
+            clicked: false,
+            experienceStarted: false,
+            runing: false
+        }
     },
 
     ready() {
@@ -47,14 +51,6 @@ export default Vue.extend({
 
             TweenMax.to('.loader', 0.6, {alpha: 1, delay: 1, ease: Power2.easeIn, onComplete: () => {
                 TweenLite.to(".loader", 0.6, {alpha: 0, delay: 4, ease: Power4.easeOut, onComplete: () => {
-
-                  setTimeout(function () {
-                    SocketHandler.socket.emit('start-app')
-                  }, 1000);
-
-                  setTimeout(function () {
-                    this.counter()
-                  }, 12000);
                 }})
             }})
         },
@@ -73,26 +69,33 @@ export default Vue.extend({
         },
 
         manageClick() {
-            let clicked = false;
 
             document.querySelector('.button').addEventListener('click', () => {
                 document.querySelector('.shape').classList.toggle('hide')
                 document.querySelector('.restart').classList.toggle('show')
 
-                if (!clicked) {
+                if (!this.clicked) {
+                    TweenLite.to("#play", 0.6, {morphSVG:"#two", x: 0, ease: Power4.easeOut})
+                    TweenLite.to("#one", 0.6, {alpha: 1, x: 0, ease: Power4.easeOut})
+                    this.clicked = true
+                    if (this.runing) {
+                        tween.play()
+                    }
+                    if (!this.experienceStarted) {
+                        SocketHandler.socket.emit('start-experience')
+                        this.counter()
+                        this.experienceStarted = true
+                        this.runing = true
+                    }
+                } else {
                     TweenMax.to('#two', 0.4, {x: 16, ease: Power2.easeIn, onComplete: () => {
-                        TweenLite.to("#two", 0.4, {morphSVG:"#play", x: 10, ease: Power4.easeOut})
+                        TweenLite.to("#play", 0.4, {morphSVG:"#play", x: 10, ease: Power4.easeOut})
                     }})
                     TweenMax.to('#one', 0.4, {x: -16, ease: Power2.easeIn, onComplete: () => {
                         TweenLite.to("#one", 0.2, {alpha: 0, ease: Power4.easeOut})
                     }})
-                    clicked = true
+                    this.clicked = false
                     tween.pause()
-                } else {
-                    TweenLite.to("#two", 0.6, {morphSVG:"#two", x: 0, ease: Power4.easeOut})
-                    TweenLite.to("#one", 0.6, {alpha: 1, x: 0, ease: Power4.easeOut})
-                    clicked = false
-                    tween.play()
                 }
             })
 

@@ -81,12 +81,16 @@
                 fill: #fff;
 
                 #one, #two {
-                    display: none;
+                  opacity: 0;
                 }
 
                 #play {
-                    display: block;
+                  transform: translateX(6px);
                 }
+
+                // #play {
+                //     display: block;
+                // }
 
                 .animate {
                     transition: all 0.4s;
