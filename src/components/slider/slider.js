@@ -114,6 +114,12 @@ Vue.component('Slider', {
             this.mobileSlider.kill()
         },
 
+        goToScrollContent() {
+            TweenMax.to(this.$el.querySelector('.slide'), 1, {
+                y: -667
+            })
+        },
+
         openPopin(event) {
             TweenMax.to('.slider-wrapper', 0.4, {
                 opacity: 0

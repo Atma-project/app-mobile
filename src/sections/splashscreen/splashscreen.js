@@ -18,7 +18,7 @@ export default Vue.extend({
 
     ready() {
         let animationEvent = this.wichAnimationEvent()
-        animationEvent && document.addEventListener(animationEvent, () => {
+        animationEvent && document.querySelector('.splashscreen .logo').addEventListener(animationEvent, () => {
             document.querySelector('.splashscreen').addEventListener('click', () => {
                 TweenMax.to(this.$el, 1.0, {
                     opacity: 0,
