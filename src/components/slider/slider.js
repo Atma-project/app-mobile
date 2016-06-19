@@ -114,8 +114,8 @@ Vue.component('Slider', {
             this.mobileSlider.kill()
         },
 
-        goToScrollContent() {
-            TweenMax.to(this.$el.querySelector('.slide'), 1, {
+        goToScrollContent(event) {
+            TweenMax.to($.closest(event.target, '.slide'), 1, {
                 y: -667
             })
         },

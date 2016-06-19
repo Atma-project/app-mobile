@@ -21,8 +21,16 @@ Vue.component('WorldsList', {
     },
 
     ready() {
-
         this.worldsEl = $.getSelectorAll('.world')
+
+        for (var i = 0; i < this.worldsEl.length; i++) {
+            if (this.worldsEl[i].offsetTop > 500) {
+                TweenMax.to(this.worldsEl[i], 0.6, {
+                    opacity: 0.3
+                })
+            }
+        }
+
         $.getSelector('.worlds').addEventListener('scroll', ::this.scrollHandler)
 
         TweenMax.staggerFromTo('.world img', 0.4, {
