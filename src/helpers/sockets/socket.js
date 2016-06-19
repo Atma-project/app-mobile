@@ -9,8 +9,9 @@ const REFERENCE_MESURE_RANGE = 20
 export default class Socket {
     constructor() {
 
-        //   this.host = 'http://172.18.33.23:3000'
-        this.host = 'http://192.168.0.12:3000'
+        //   this.host = 'http://172.18.33.23:4000'
+        // this.host = 'http://192.168.0.12:4000'
+        this.host = 'http://192.168.1.84:4000'  //appart
 
 
 

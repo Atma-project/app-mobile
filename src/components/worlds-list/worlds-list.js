@@ -84,7 +84,14 @@ Vue.component('WorldsList', {
 
     methods: {
         toggleSlider(event) {
-            this.sliderDisplay = true
+            TweenMax.to(event.target, 1, {
+                scaleX: 1.7,
+                scaleY: 1.7,
+                y: 40,
+                onComplete: () => {
+                    this.sliderDisplay = true
+                }
+            })
 
             if (SocketHandler.listening) {
                 this.currentWorld.id = '#' + $.parent(event.target).id
