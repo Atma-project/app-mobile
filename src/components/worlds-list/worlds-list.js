@@ -21,8 +21,16 @@ Vue.component('WorldsList', {
     },
 
     ready() {
-
         this.worldsEl = $.getSelectorAll('.world')
+
+        for (var i = 0; i < this.worldsEl.length; i++) {
+            if (this.worldsEl[i].offsetTop > 500) {
+                TweenMax.to(this.worldsEl[i], 0.6, {
+                    opacity: 0.3
+                })
+            }
+        }
+
         $.getSelector('.worlds').addEventListener('scroll', ::this.scrollHandler)
 
         TweenMax.staggerFromTo('.world img', 0.4, {
@@ -84,7 +92,14 @@ Vue.component('WorldsList', {
 
     methods: {
         toggleSlider(event) {
-            this.sliderDisplay = true
+            TweenMax.to(event.target, 1, {
+                scaleX: 1.7,
+                scaleY: 1.7,
+                y: 40,
+                onComplete: () => {
+                    this.sliderDisplay = true
+                }
+            })
 
             if (SocketHandler.listening) {
                 this.currentWorld.id = '#' + $.parent(event.target).id

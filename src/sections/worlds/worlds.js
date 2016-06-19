@@ -2,6 +2,7 @@ import "./worlds.scss"
 
 import Vue from 'vue'
 import worldsData from 'helpers/app/worlds'
+import worldsNewData from 'helpers/app/worlds-new'
 
 export default Vue.extend({
     template: require('./worlds.html'),
@@ -48,7 +49,10 @@ export default Vue.extend({
     },
 
     created() {
+        if (document.body.classList.contains('unlocked')) {
 
+            this.worlds = worldsNewData
+        }
     },
 
     ready() {

@@ -4,7 +4,10 @@
             <img v-if="world.lit || (world.lit && world.lock)" :src="world.texture" alt="{{world.name}}">
             <img v-if="!world.lit" :src="world.lockedTexture" alt="{{world.name}}">
             <!-- <h2 :class="{'text-light': world.lit}">{{ world.name }}</h2> -->
-            <h2 :class="{'text-light': world.lit, 'text-off': !world.lit}">{{ world.name }}</h2>
+            <div class="world-name">
+                <h2 :class="{'text-light': world.lit, 'text-off': !world.lit}">{{ world.name }}</h2>
+                <span class="underline"></span>
+            </div>
         </div>
     </div>
 </div>
