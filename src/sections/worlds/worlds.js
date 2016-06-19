@@ -50,7 +50,7 @@ export default Vue.extend({
 
     created() {
         if (document.body.classList.contains('unlocked')) {
-            console.log('bisous')
+
             this.worlds = worldsNewData
         }
     },
