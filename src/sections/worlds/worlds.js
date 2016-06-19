@@ -56,7 +56,17 @@ export default Vue.extend({
     },
 
     ready() {
+        var parallax = document.querySelectorAll(".world")
+        var speed = 0.15
+        var inner = document.querySelector('.worlds-map')
 
+        inner.onscroll = function(){
+            [].slice.call(parallax).forEach(function(el,i){
+                var windowYOffset = window.pageXOffset
+                var elBackgrounPos = "translate(" + el.getBoundingClientRect().left * (speed * i) + "px," + el.getBoundingClientRect().top * (speed * i) + "px)"
+                el.style.transform = elBackgrounPos;
+            })
+        }
     },
 
     methods: {

@@ -72,4 +72,20 @@
             left: 733px;
         }
     }
+    @for $i from 1 through 10{
+      .world:nth-child(#{$i}){
+        animation: magicu linear infinite alternate;
+        animation-duration: $i + 1s;
+        @keyframes magicu {
+          0% {
+            margin-top: 15px;
+          }
+          100% {
+            margin-top: 0px;
+          }
+        }
+      }
+    }
+
+
 }

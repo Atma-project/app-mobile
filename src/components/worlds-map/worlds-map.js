@@ -37,42 +37,42 @@ Vue.component('WorldsMap', {
             scale: 1
         }, 0.4)
 
-        TweenMax.from('.world:nth-child(1)', 2, {
-            y: -10,
-            yoyo: true,
-            repeat: -1,
-            ease: Sine.easeInOut
-        })
-
-        TweenMax.from('.world:nth-child(2)', 2.5, {
-            y: -5,
-            yoyo: true,
-            repeat: -1,
-            ease: Sine.easeInOut
-        })
-
-        TweenMax.from('.world:nth-child(3)', 2.5, {
-            y: 10,
-            x: -5,
-            rotation: -5,
-            yoyo: true,
-            repeat: -1,
-            ease: Sine.easeInOut
-        })
-
-        TweenMax.from('.world:nth-child(4)', 1.5, {
-            y: 5,
-            yoyo: true,
-            repeat: -1,
-            ease: Sine.easeInOut
-        })
-
-        TweenMax.from('.world:nth-child(5)', 3, {
-            y: 5,
-            yoyo: true,
-            repeat: -1,
-            ease: Sine.easeInOut
-        })
+        // TweenMax.from('.world:nth-child(1)', 2, {
+        //     y: -10,
+        //     yoyo: true,
+        //     repeat: -1,
+        //     ease: Sine.easeInOut
+        // })
+        //
+        // TweenMax.from('.world:nth-child(2)', 2.5, {
+        //     y: -5,
+        //     yoyo: true,
+        //     repeat: -1,
+        //     ease: Sine.easeInOut
+        // })
+        //
+        // TweenMax.from('.world:nth-child(3)', 2.5, {
+        //     y: 10,
+        //     x: -5,
+        //     rotation: -5,
+        //     yoyo: true,
+        //     repeat: -1,
+        //     ease: Sine.easeInOut
+        // })
+        //
+        // TweenMax.from('.world:nth-child(4)', 1.5, {
+        //     y: 5,
+        //     yoyo: true,
+        //     repeat: -1,
+        //     ease: Sine.easeInOut
+        // })
+        //
+        // TweenMax.from('.world:nth-child(5)', 3, {
+        //     y: 5,
+        //     yoyo: true,
+        //     repeat: -1,
+        //     ease: Sine.easeInOut
+        // })
     },
 
     beforeDestroy() {
