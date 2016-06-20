@@ -203,19 +203,29 @@
         height: 100%;
 
         .screen {
-            width: 308px;
-            height: auto;
-
+            display: block;
             position: absolute;
-            bottom: 0;
+            width: 385px;
+            height: auto;
+            top: 0;
             left: 50%;
             transform: translateX(-50%);
+        }
+
+        .screen-1 {
+            display: block;
+            position: absolute;
+            width: 315px;
+            height: auto;
+            top: 40%;
+            left: 8%;
         }
 
         .close-popin {
             width: 40px;
             height: 40px;
             position: absolute;
+            z-index: 10000;
             top: 31px;
             right: 31px;
         }

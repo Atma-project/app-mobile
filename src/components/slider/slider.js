@@ -115,6 +115,9 @@ Vue.component('Slider', {
         },
 
         goToScrollContent(event) {
+            TweenMax.to('.arrow', 0.4, {
+                opacity: 0
+            })
             TweenMax.to($.closest(event.target, '.slide'), 1, {
                 y: -667
             })
@@ -150,6 +153,9 @@ Vue.component('Slider', {
         },
 
         closePopin() {
+            TweenMax.to('.arrow', 0.4, {
+                opacity: 1
+            })
             TweenMax.fromTo('.popin', 0.4, {
                 opacity: 1,
                 y: 0
