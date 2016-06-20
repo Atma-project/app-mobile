@@ -27,12 +27,14 @@ export default Vue.extend({
             SocketHandler.socket.on('end-experience', () => {
               this.$route.router.go('/results')
             })
+            SocketHandler.handleMotion()
 
         } else {
             SocketHandler.init()
             SocketHandler.socket.on('end-experience', () => {
               this.$route.router.go('/results')
             })
+            SocketHandler.handleMotion()
         }
     },
 

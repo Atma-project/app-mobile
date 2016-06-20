@@ -10,8 +10,8 @@ export default class Socket {
     constructor() {
 
         //   this.host = 'http://172.18.33.23:4000'
-        this.host = 'http://172.18.33.112:4000'
-        // this.host = 'http://192.168.1.84:4000'  //appart
+        // this.host = 'http://172.18.33.112:4000'
+        this.host = 'http://192.168.1.84:4000'  //appart
 
 
 
